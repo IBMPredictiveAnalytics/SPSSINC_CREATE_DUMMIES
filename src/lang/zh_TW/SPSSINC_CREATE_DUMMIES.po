@@ -1,0 +1,112 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2014
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-05-21 17:51+China Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: SPSSINC_CREATE_DUMMIES.py:166
+msgid ""
+"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\n"
+"or MACRONAME and MACRONAME1 together"
+msgstr ""
+"不能同時使用 VARIABLE 及 VARIABLES 或 ROOTNAME 及 ROOTNAME1\n"
+"或 MACRONAME 及 MACRONAME1"
+
+#: SPSSINC_CREATE_DUMMIES.py:176
+msgid "At least one variable must be specified"
+msgstr ""
+"至少必須指定一個變數"
+
+#: SPSSINC_CREATE_DUMMIES.py:180
+msgid "No dummy variable creation was specified"
+msgstr ""
+"未指定虛擬變數建立"
+
+#: SPSSINC_CREATE_DUMMIES.py:185
+msgid "Not enough variables selected to produce %s-way interaction"
+msgstr ""
+"沒有選取足夠的變數來產生 %s 向互動"
+
+#: SPSSINC_CREATE_DUMMIES.py:188
+msgid "The number of root names does not match the number of variables: %s"
+msgstr ""
+"根名稱數目不符合變數數目：%s"
+
+#: SPSSINC_CREATE_DUMMIES.py:203
+msgid "For main-effect dummies, the number of macro names is different from the number of variables."
+msgstr ""
+"對於主效應虛擬變數，巨集名稱數目與變數數目不同。"
+
+#: SPSSINC_CREATE_DUMMIES.py:206
+msgid "A macro name was specified without a corresponding root name"
+msgstr ""
+"指定的巨集名稱沒有對應的根名稱"
+
+#: SPSSINC_CREATE_DUMMIES.py:269
+msgid "SPSSINC CREATE DUMMIES cannot be used with date or time variables"
+msgstr ""
+"SPSSINC CREATE DUMMIES 不能與日期或時間變數搭配使用"
+
+#: SPSSINC_CREATE_DUMMIES.py:433
+msgid "The length of a target name exceeds 64 bytes.  Shorten the root names."
+msgstr ""
+"目標名稱的長度超過 64 個位元組。請縮短根名稱。"
+
+#: SPSSINC_CREATE_DUMMIES.py:453
+msgid "Label"
+msgstr ""
+"標籤"
+
+#: SPSSINC_CREATE_DUMMIES.py:453
+msgid "Variable Creation"
+msgstr ""
+"變數建立"
+
+#: SPSSINC_CREATE_DUMMIES.py:478
+msgid "Included Variables"
+msgstr ""
+"包含的變數"
+
+#: SPSSINC_CREATE_DUMMIES.py:478
+msgid "Macro Definitions"
+msgstr ""
+"巨集定義"
+
+#: SPSSINC_CREATE_DUMMIES.py:557
+msgid "---"
+msgstr ""
+"---"
+
+#: SPSSINC_CREATE_DUMMIES.py:609
+msgid "Create dummy variables"
+msgstr ""
+"建立虛擬變數"
+
+
+
