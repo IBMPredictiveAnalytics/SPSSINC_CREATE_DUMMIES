@@ -1,0 +1,44 @@
+<!-- ***************************************************************** -->
+<!--                                                                   -->
+<!-- Licensed Materials - Property of IBM                              -->
+<!--                                                                   -->
+<!-- IBM SPSS Products: Statistics Common                              -->
+<!--                                                                   -->
+<!-- (C) Copyright IBM Corp. 1989, 2011                                -->
+<!--                                                                   -->
+<!-- US Government Users Restricted Rights - Use, duplication or       -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with IBM       -->
+<!-- Corp.                                                             -->
+<!--                                                                   -->
+<!-- ***************************************************************** -->
+<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="SPSSINC CREATE DUMMIES" Language="Python">
+	<Subcommand Name="" IsArbitrary="False" Occurrence="Optional">
+		<Parameter Name="VARIABLE" ParameterType="VariableNameList"/>
+		<Parameter Name="VARIABLES" ParameterType="VariableNameList"/>
+		<Parameter Name="ROOTNAME" ParameterType="VariableNameList"/>
+		<Parameter Name="ROOTNAME1" ParameterType="VariableNameList"/>
+		<Parameter Name="ROOTNAME2" ParameterType="VariableName"/>
+		<Parameter Name="ROOTNAME3" ParameterType="VariableName"/>
+	</Subcommand>
+	<Subcommand Name="OPTIONS">
+		<Parameter Name="MAXVARS" ParameterType="Integer"/>
+		<Parameter Name="ORDER" ParameterType="Keyword">
+			<EnumValue Name="A"/>
+			<EnumValue Name="D"/>
+		</Parameter>
+		<Parameter Name="MACRONAME" ParameterType="TokenList"/>
+		<Parameter Name="MACRONAME1" ParameterType="TokenList"/>
+		<Parameter Name="MACRONAME2" ParameterType="TokenList"/>
+		<Parameter Name="MACRONAME3" ParameterType="TokenList"/>
+		<Parameter Name="OMITFIRST" ParameterType="Keyword">
+			<EnumValue Name="YES"/>
+			<EnumValue Name="NO"/>
+		</Parameter>
+		<Parameter Name="USEML" ParameterType="Keyword"/>
+		<Parameter Name="USEVALUELABELS" ParameterType="Keyword">
+			<EnumValue Name="YES"/>
+			<EnumValue Name="NO"/>
+		</Parameter>
+	</Subcommand>
+	<Subcommand Name="HELP" Occurrence="Optional"/>
+</Command>
