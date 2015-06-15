@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>SPSSINC CREATE DUMMIES Extension Command</title>
+
+<link rel="stylesheet" type="text/css" href="extsyntax.css" />
+
+
+
+
+
+</head>
+
+<body>
+<h1>SPSSINC CREATE DUMMIES Extension Command</h1>
+
+<p>Create a set of dummy variables for values of one or more variables</p>
+<div class="syntax">
+<p>SPSSINC CREATE DUMMIES  VARIABLES=<em>variables</em> ROOTNAME1=<em>rootnames</em>
+ROOTNAME2=<em>rootname</em> ROOTNAME3=<em>rootname</em></p>
+
+<p>/OPTIONS MAXVARS=<em>n</em> ORDER=A<sup>&#42;&#42;</sup> or D<br/>
+MACRONAME1=&ldquo;<em>name</em>&rdquo; MACRONAME2=&ldquo;<em>name</em>&rdquo; MACRONAME3=&ldquo;<em>name</em>&rdquo;<br/>
+OMITFIRST=YES<sup>&#42;&#42;</sup> or NO<br/>
+USEVALUELABELS=NO<sup>&#42;&#42;</sup> or YES<br/>
+USEMLS=YES<sup>&#42;&#42;</sup> or NO</p>
+
+<p>/HELP</p>
+
+<p><sup>&#42;</sup> Required<br/>
+<sup>&#42;&#42;</sup> Default</p>
+</div>
+<p>SPSSINC CREATE DUMMIES /HELP displays this help and does nothing else.</p>
+
+
+
+<pre class="example"><code>SPSSINC CREATE DUMMIES VARIABLES=job gender
+ROOTNAME1 = jobroot genderroot  ROOTNAME2=two
+MACRONAME1 = &quot;!job&quot; &quot;!gender&quot;.
+</code></pre>
+
+<p>This command creates a set of 0-1 dummy variables for values of one or more variables.  This can include
+dummies for individual variables, two-way interactions, and three-way interactions.  This is 
+useful, for example, when running the Regression procedure and you have categorical 
+variables that needs to be treated as factors.  Scale measurement variables can be included
+and are treated appropriately for interaction terms.</p>
+
+<p>Any cases excluded by the current filter are not considered in determining the set of values.</p>
+
+<p><strong>VARIABLES</strong> specifies the variables for which dummies are created.
+<strong>ROOT1</strong> specifies root names for the one-way dummy variables.  Specify one root name
+for each variable listed in VARIABLES.  <strong>ROOT2</strong> and <strong>ROOT3</strong> each specify a single root name
+for all two-way or three-way effects, respectively.  Only orders for which there is a root
+name are generated.</p>
+
+<p>For one-way dummies, the dummy names will have the form
+<code>rootname_n</code>.  Names for two-way and three-way dummies have the form
+<code>rootname_m_n</code>, and <code>rootname_m_n_o</code>.
+Existing variables will be replaced.</p>
+
+<p>For a scale variable, the one-way generated variable is just a copy rather than a
+set of individual dummies.  For two-way dummies, for example, if x is scale 
+and y is categorical with values 1, 2, and 3, the two-way interaction 
+would generate
+<code>x*(y eq 1), x * (y eq 2), and x*(y=3)</code>.</p>
+
+<h2>OPTIONS</h2>
+
+<p>Specify <strong>USEMLS</strong>=NO to force all variables to be treated categorically.</p>
+
+<p>Specify <strong>MAXVARS</strong>=n to limit the number of dummy variables generated to 
+no more than n.  This applies only to the one-way interactions.</p>
+
+<p>By default the dummies correspond to ascending values of the 
+input variable.  Specify <strong>ORDER</strong>=D for the reverse order.  For interaction dummies, the
+values are sorted in the order in which the variables are listed in the VARIABLES
+keyword.</p>
+
+<p>The variable labels for the new variables have forms like
+<code>varname = value or (varname = value) * (varname = value)</code> or 
+<code>varname * (varname = value)</code>.</p>
+
+<p><strong>USEVALUELABELS</strong>=YES causes the value label corresponding to the dummy 
+to be used in the label.  If a value does not have a label, the value itself is used.
+USEVALUELABELS=NO causes the values to be used instead.</p>
+
+<p><strong>MACRONAME1</strong>=name creates a set of macros whose text is the list of dummy variables.
+The number of names must match the number of variables.
+<strong>MACRONAME2</strong> and <strong>MACRONAME3</strong> specify a single name each for the 
+two- and three-way macros.  Note that the macro names must be enclosed in
+quotes. (Otherwise the system would attempt to expand them.)  However, you
+can use one set of quotes surrounding the entire list as a shortcut.</p>
+
+<p>By default, the first dummy (after apply the order specification) is omitted
+from  the list for each macro .  This is convenient in Regression if a 
+constant term is included.  Specify <strong>OMITFIRST</strong>=NO to include all the variables 
+in the macro text.</p>
+
+<p><strong>ROOTNAME</strong> is a synonym for ROOTNAME1; <strong>MACRONAME</strong> is a synonym
+for MACRONAME1, and <strong>VARIABLE</strong> is a synonym for VARIABLES.</p>
+
+<p>&copy; Copyright IBM Corp. 1989, 2014</p>
+
+</body>
+
+</html>
+
