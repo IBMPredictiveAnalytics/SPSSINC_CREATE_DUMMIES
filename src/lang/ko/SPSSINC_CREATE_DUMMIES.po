@@ -1,0 +1,106 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2013
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2013-08-29 10:54+Eastern Daylight Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+#: SPSSINC_CREATE_DUMMIES.py:166
+msgid ""
+"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\n"
+"or MACRONAME and MACRONAME1 together"
+msgstr ""
+"VARIABLE과 VARIABLES 또는 ROOTNAME과 ROOTNAME1\n"
+"또는 MACRONAME과 MACRONAME1을 함께 사용할 수 없습니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:176
+msgid "At least one variable must be specified"
+msgstr ""
+"최소 하나의 변수를 지정해야 합니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:180
+msgid "No dummy variable creation was specified"
+msgstr ""
+"더미변수 작성이 지정되지 않았습니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:185
+msgid "Not enough variables selected to produce %s-way interaction"
+msgstr ""
+"%s방향 상호작용을 생성하도록 선택된 변수가 충분하지 않습니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:188
+msgid "The number of root names does not match the number of variables: %s"
+msgstr ""
+"루트 이름의 수가 변수의 수와 매치하지 않습니다. %s"
+
+#: SPSSINC_CREATE_DUMMIES.py:203
+msgid "For main-effect dummies, the number of macro names is different from the number of variables."
+msgstr ""
+"주효과 더미의 경우, 매크로 이름의 수가 변수의 수와 다릅니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:206
+msgid "A macro name was specified without a corresponding root name"
+msgstr ""
+"해당 루트 이름 없이 매크로 이름이 지정되었습니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:269
+msgid "SPSSINC CREATE DUMMIES cannot be used with date or time variables"
+msgstr ""
+"SPSSINC CREATE DUMMIES는 날짜 또는 시간 변수와 함께 사용할 수 없습니다."
+
+#: SPSSINC_CREATE_DUMMIES.py:433
+msgid "The length of a target name exceeds 64 bytes.  Shorten the root names."
+msgstr ""
+"목표 이름의 길이가 64바이트를 초과했습니다. 루트 이름 길이를 줄이십시오."
+
+#: SPSSINC_CREATE_DUMMIES.py:453
+msgid "Label"
+msgstr ""
+"레이블"
+
+#: SPSSINC_CREATE_DUMMIES.py:453
+msgid "Variable Creation"
+msgstr ""
+"변수 작성"
+
+#: SPSSINC_CREATE_DUMMIES.py:478
+msgid "Included Variables"
+msgstr ""
+"포함된 변수"
+
+#: SPSSINC_CREATE_DUMMIES.py:478
+msgid "Macro Definitions"
+msgstr ""
+"매크로 정의"
+
+#: SPSSINC_CREATE_DUMMIES.py:557
+msgid "---"
+msgstr ""
+"---"
+
+#: SPSSINC_CREATE_DUMMIES.py:609
+msgid "Create dummy variables"
+msgstr ""
+"더미변수 작성"
