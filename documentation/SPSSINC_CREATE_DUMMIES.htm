@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Create a Set of Dummy Variables from Values of a
+  Variable</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Create a Set of Dummy Variables from Values of a
+  Variable</h1>This procedure accepts a list of variables and
+  produces a set of dummy variables representing their values. It
+  can produce dummies for individual variables, dummies for two-way
+  interaction terms, and/or dummies for three-way interactions. It
+  passes the data ignoring any cases excluded by the current filter
+  and creates dummies for the values found.
+
+  <p>For scale variables, by default, it produces just one variable
+  instead of dummies which can be using in producing interaction
+  terms.</p>
+
+  <p><span class="runinhead">Create Dummy Variables for.</span>
+  Choose variables from which to create sets of dummy variables.
+  Typically these would be categorical variables, but scale
+  variables can be usefully selected for building interaction
+  terms. Both string and numeric variables can be used, but date
+  and time variables are not allowed.</p>
+
+  <p><span class="runinhead">Main Effect Dummy Variables.</span>
+  Check the box <span name=".screen">Create main-effect
+  dummies</span> to create a set of dummy variables for each
+  selected variable.</p>
+
+  <p><span class="runinhead">Root Names.</span> Specify names to be
+  used as the prefix of all the dummy variables for each variable
+  selected. Enter as many names are there are variables selected,
+  separated by a blank. The dummy names will have the form
+  rootname_n. If a variable with that name already exists, it is
+  replaced.</p>
+
+  <p><span class="runinhead">Macro Name.</span> If names are
+  entered in this field, a macro will be created for each set of
+  dummy variables or scale variable. Enter as many names are there
+  are variables selected if macro generation is required. It is
+  conventional to start each macro name with "!".</p>
+
+  <p><span class="runinhead">Two-Way Interactions and Three-Way
+  Interactions.</span> Follow the same procedure as for Main Effect
+  Dummy Variables, but enter only a single root name and macro name
+  (if desired). Dummy names will have the form<br>
+  rootname_m_n,<br>
+  and existing variables will be replaced.</p>
+
+  <p><span class="runinhead">Dummy Variable Labels</span> By
+  default, labels for the dummy variables are constructed from the
+  input variable name and the appropriate value label. Select
+  <span class=".screen">Use values</span> to use the values
+  instead. If a value is not labelled, the value itself is used in
+  the label.</p>
+
+  <p><span class="runinhead">Value Order.</span> Choose
+  <span class=".screen">Ascending</span> or <span class=
+  ".screen">Descending</span> for the sort order of the dummy
+  variables. This is mainly useful in connection with generating a
+  macro.</p>
+
+  <p><span class="runinhead">Omit first dummy category from macro
+  definitions.</span> Check this box to omit the first dummy
+  variable from each macro definition. This is convenient for the
+  REGRESSION procedure in order to avoid having a singular
+  regressor matrix. If there are no interaction terms being
+  generated, this means that the first dummy for each variable is
+  omitted from the macro definition. If there are interaction
+  terms, variables involving that category for any of the input
+  variables are omitted from the macro definition.</p>
+
+  <p class="bullet">• Which categories are considered as first
+  depends on the Value Order setting.</p>
+
+  <p class="bullet">• Scale variables are not affected by this
+  setting.</p>
+
+  <p><span class="runinhead">Measurement Level Usage.</span>
+  Categorical variables produce a dummy for each distinct values.
+  Scale variables are represented by a single variable. Choose
+  <span class=".screen">Do not create dummies for scale variable
+  values</span> for this behavior. Choose <span class=
+  ".screen">Create dummies for all variables</span> to ignore the
+  measurement level and generate a variable for each value even for
+  scale variables.</p>
+
+  <h2>Additional Features</h2>
+
+  <p>This dialog generates syntax for the SPSSINC CREATE DUMMIES
+  extension command. To display help for this command, run the
+  following syntax:</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Requirements</h2>
+
+  <p>This dialog requires the Integration Plug-In for Python and
+  the SPSSINC CREATE DUMMIES extension command. For IBM® SPSS®
+  Statistics 19 and higher, the Plug-In and the extension command
+  are installed with the Essentials for Python package. For more
+  information, see How to Get Integration Plug-Ins, under Core
+  System &gt; Frequently Asked Questions in the IBM SPSS Statistics
+  Help system. If you downloaded SPSSINC CREATE DUMMIES from the
+  SPSS Community, then please follow the instructions in the
+  associated readme file.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>
