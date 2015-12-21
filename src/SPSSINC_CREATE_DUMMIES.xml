@@ -11,7 +11,7 @@
 <!-- Corp.                                                             -->
 <!--                                                                   -->
 <!-- ***************************************************************** -->
-<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="SPSSINC CREATE DUMMIES" Language="Python">
+<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="SPSSINC CREATE DUMMIES" Language="Python" LanguageVersion="3">
 	<Subcommand Name="" IsArbitrary="False" Occurrence="Optional">
 		<Parameter Name="VARIABLE" ParameterType="VariableNameList"/>
 		<Parameter Name="VARIABLES" ParameterType="VariableNameList"/>
