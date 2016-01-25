@@ -3,25 +3,24 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2015
+# * (C) Copyright IBM Corp. 1989, 2014
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
 # ************************************************************************/
 
-
+from __future__ import with_statement
 
 """SPSSINC CREATE DUMMIES extension command"""
 
 __author__ =  'spss, JKP'
-__version__=  '3.0.0'
+__version__=  '2.0.3'
 
 # history
 # 18-dec-2009 enable translation
 #  23-jun-2010  translatable proc names
 #  31-oct-2011 upgrade to support two and three way interaction term generation
 # 15-may-2013 fix case where label is null and generation from labels is requested
-# 06-nov-2015 upgrade to support Python 3
 
 helptext = """SPSSINC CREATE DUMMIES  VARIABLES=varnames ROOTNAME1=rootnames
 ROOTNAME2=rootname ROOTNAME3=rootname
@@ -190,7 +189,10 @@ or MACRONAME and MACRONAME1 together"""))
         else:
             rootlist.append([])
     global  unistr
-    unistr = str
+    if spss.PyInvokeSpss.IsUTF8mode():
+        unistr = unicode
+    else:
+        unistr = str
         
     # When generating macros, for one-way dummies, there must be a macro name
     # for each variable.  For interaction dummies, there is one macro name for all dummies of that order
@@ -266,7 +268,7 @@ class Maker(object):
                 if vfmt.find("DATE") >= 0 or vfmt.find("TIME") >= 0:
                     raise AttributeError(_("SPSSINC CREATE DUMMIES cannot be used with date or time variables"))
                 if usevaluelabels:
-                    vlabels = dict([(k, item.replace('"', '""')) for k, item in list(v.valueLabels.data.items())])
+                    vlabels = dict([(k, item.replace('"', '""')) for k, item in v.valueLabels.data.items()])
                 else:
                     vlabels = None
                 generate = not (usemls and v.measurementLevel in ["SCALE", "UNKNOWN"])
@@ -439,7 +441,7 @@ class Maker(object):
     
     def fstrip(self, value):
         """return value after stripping if string"""
-        if isinstance(value, str):
+        if isinstance(value, basestring):
             return value.rstrip()
         else:
             return value
@@ -464,7 +466,7 @@ class Maker(object):
         try:
             info.generate()
         except:
-            print("""The report table could not be produced""")   # nontranslatable
+            print """The report table could not be produced"""   # nontranslatable
         
     def macros(self):
         """Create requested macro definitions and report"""
@@ -497,7 +499,7 @@ class Maker(object):
         try:
             info.generate()
         except:
-            print("The macro generation table could not be produced")   # nontranslatable
+            print "The macro generation table could not be produced"   # nontranslatable
 
             #if not isinstance(macroname, unicode):
                 #macroname = unicode(macroname, self.myenc)
@@ -529,7 +531,7 @@ def _safeval(val, quot):
 def Run(args):
     """Execute the CREATE DUMMIES extension command"""
 
-    args = args[list(args.keys())[0]]
+    args = args[args.keys()[0]]
 
     oobj = Syntax([
         Template("VARIABLE", subc="",  ktype="existingvarlist", var="varname", islist=True),
@@ -557,7 +559,7 @@ def Run(args):
         def _(msg):
             return msg
     # A HELP subcommand overrides all else
-    if "HELP" in args:
+    if args.has_key("HELP"):
         ###print helptext
         helper()
     else:
@@ -625,7 +627,7 @@ class NonProcPivotTable(object):
 def attributesFromDict(d):
     """build self attributes from a dictionary d."""
     self = d.pop('self')
-    for name, value in d.items():
+    for name, value in d.iteritems():
         setattr(self, name, value)
 
 def StartProcedure(procname, omsid):
@@ -645,6 +647,22 @@ def StartProcedure(procname, omsid):
     except TypeError:  #older version
         spss.StartProcedure(omsid)
 
+
+def helper():
+    """open html help in default browser window
+    
+    The location is computed from the current module name"""
+    
+    import webbrowser, os.path
+    
+    path = os.path.splitext(__file__)[0]
+    helpspec = "file://" + path + os.path.sep + \
+         "markdown.html"
+    
+    # webbrowser.open seems not to work well
+    browser = webbrowser.get()
+    if not browser.open_new(helpspec):
+        print("Help file not found:" + helpspec)
 try:    #override
     from extension import helper
 except:
