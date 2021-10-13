@@ -1,106 +1,69 @@
-#/***********************************************************************
-# * Licensed Materials - Property of IBM 
-# *
-# * IBM SPSS Products: Statistics Common
-# *
-# * (C) Copyright IBM Corp. 1989, 2014
-# *
-# * US Government Users Restricted Rights - Use, duplication or disclosure
-# * restricted by GSA ADP Schedule Contract with IBM Corp. 
-# ************************************************************************/
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
+
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-29 10:54+Eastern Daylight Time\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-11 00:31-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
-# NLS_ENCODING=UTF-8
-# IBMUPYTH
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Globalization Pipeline\n"
 
-#: SPSSINC_CREATE_DUMMIES.py:166
 msgid ""
-"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\n"
-"or MACRONAME and MACRONAME1 together"
+"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\nor MACRONAME"
+" and MACRONAME1 together"
 msgstr ""
-"VARIABLE と VARIABLES、または ROOTNAME と ROOTNAME1\n"
-"または MACRONAME と MACRONAME1 の両方を同時に使用することはできません"
+"VARIABLE と VARIABLES、または ROOTNAME と ROOTNAME1\nまたは MACRONAME と MACRONAME1 の両方を"
+"同時に使用することはできません"
 
-#: SPSSINC_CREATE_DUMMIES.py:176
 msgid "At least one variable must be specified"
-msgstr ""
-"少なくとも 1 つの変数を指定する必要があります"
+msgstr "少なくとも 1 つの変数を指定する必要があります"
 
-#: SPSSINC_CREATE_DUMMIES.py:180
 msgid "No dummy variable creation was specified"
-msgstr ""
-"ダミー変数の作成は指定されませんでした"
+msgstr "ダミー変数の作成は指定されませんでした"
 
-#: SPSSINC_CREATE_DUMMIES.py:185
 msgid "Not enough variables selected to produce %s-way interaction"
-msgstr ""
-"%s 次の交互作用を生成するために十分な変数が選択されていません"
+msgstr "%s 次の交互作用を生成するために十分な変数が選択されていません"
 
-#: SPSSINC_CREATE_DUMMIES.py:188
 msgid "The number of root names does not match the number of variables: %s"
-msgstr ""
-"ルート名の数が変数の数と一致しません: %s"
+msgstr "ルート名の数が変数の数と一致しません: %s"
 
-#: SPSSINC_CREATE_DUMMIES.py:203
-msgid "For main-effect dummies, the number of macro names is different from the number of variables."
-msgstr ""
-"主効果ダミーにおいて、マクロ名の数が変数の数と異なります。"
+msgid ""
+"For main-effect dummies, the number of macro names is different from the "
+"number of variables."
+msgstr "主効果ダミーにおいて、マクロ名の数が変数の数と異なります。"
 
-#: SPSSINC_CREATE_DUMMIES.py:206
 msgid "A macro name was specified without a corresponding root name"
-msgstr ""
-"マクロ名が指定されましたが対応するルート名がありません"
+msgstr "マクロ名が指定されましたが対応するルート名がありません"
 
-#: SPSSINC_CREATE_DUMMIES.py:269
 msgid "SPSSINC CREATE DUMMIES cannot be used with date or time variables"
-msgstr ""
-"SPSSINC CREATE DUMMIES を日付変数または時間変数とともに使用することはできません"
+msgstr "SPSSINC CREATE DUMMIES を日付変数または時間変数とともに使用することはできません"
 
-#: SPSSINC_CREATE_DUMMIES.py:433
 msgid "The length of a target name exceeds 64 bytes.  Shorten the root names."
-msgstr ""
-"目標名が 64 バイトを超えています。ルート名を短くしてください。"
+msgstr "目標名が 64 バイトを超えています。ルート名を短くしてください。"
 
-#: SPSSINC_CREATE_DUMMIES.py:453
 msgid "Label"
-msgstr ""
-"ラベル"
+msgstr "ラベル"
 
-#: SPSSINC_CREATE_DUMMIES.py:453
 msgid "Variable Creation"
-msgstr ""
-"変数作成"
+msgstr "変数作成"
 
-#: SPSSINC_CREATE_DUMMIES.py:478
 msgid "Included Variables"
-msgstr ""
-"含まれる変数"
+msgstr "含まれる変数"
 
-#: SPSSINC_CREATE_DUMMIES.py:478
 msgid "Macro Definitions"
-msgstr ""
-"マクロ定義"
+msgstr "マクロ定義"
 
-#: SPSSINC_CREATE_DUMMIES.py:557
 msgid "---"
-msgstr ""
-"---"
+msgstr "---"
 
-#: SPSSINC_CREATE_DUMMIES.py:609
 msgid "Create dummy variables"
-msgstr ""
-"ダミー変数の作成"
+msgstr "ダミー変数の作成"

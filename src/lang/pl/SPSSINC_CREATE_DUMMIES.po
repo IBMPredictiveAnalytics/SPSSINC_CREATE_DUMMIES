@@ -1,112 +1,75 @@
-#/***********************************************************************
-# * Licensed Materials - Property of IBM 
-# *
-# * IBM SPSS Products: Statistics Common
-# *
-# * (C) Copyright IBM Corp. 1989, 2014
-# *
-# * US Government Users Restricted Rights - Use, duplication or disclosure
-# * restricted by GSA ADP Schedule Contract with IBM Corp. 
-# ************************************************************************/
-
-# NLS_ENCODING=UTF-8
-# IBMUPYTH
-
-
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
+
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-05-21 17:51+China Standard Time\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-10-11 00:52-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
-"Generated-By: pygettext.py 1.5\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Globalization Pipeline\n"
 
-
-#: SPSSINC_CREATE_DUMMIES.py:166
 msgid ""
-"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\n"
-"or MACRONAME and MACRONAME1 together"
+"Cannot use both VARIABLE and VARIABLES or ROOTNAME and ROOTNAME1\nor MACRONAME"
+" and MACRONAME1 together"
 msgstr ""
-"Nie można użyć jednocześnie słów kluczowych VARIABLE i VARIABLES, ROOTNAME i ROOTNAME1\n"
-"ani MACRONAME i MACRONAME1"
+"Nie można użyć jednocześnie słów kluczowych VARIABLE i VARIABLES, ROOTNAME i "
+"ROOTNAME1\nani MACRONAME i MACRONAME1"
 
-#: SPSSINC_CREATE_DUMMIES.py:176
 msgid "At least one variable must be specified"
-msgstr ""
-"Musi zostać określona przynajmniej jedna zmienna"
+msgstr "Musi zostać określona przynajmniej jedna zmienna"
 
-#: SPSSINC_CREATE_DUMMIES.py:180
 msgid "No dummy variable creation was specified"
-msgstr ""
-"Nie określono tworzenia zmiennej sztucznej"
+msgstr "Nie określono tworzenia zmiennej sztucznej"
 
-#: SPSSINC_CREATE_DUMMIES.py:185
 msgid "Not enough variables selected to produce %s-way interaction"
 msgstr ""
-"Wybrano zbyt mało zmiennych, aby można było utworzyć interakcję jakiegoś rzędu %s"
+"Wybrano zbyt mało zmiennych, aby można było utworzyć interakcję jakiegoś rzędu"
+" %s"
 
-#: SPSSINC_CREATE_DUMMIES.py:188
 msgid "The number of root names does not match the number of variables: %s"
-msgstr ""
-"Liczba trzonów nazw nie zgadza się z liczbą zmiennych: %s"
+msgstr "Liczba trzonów nazw nie zgadza się z liczbą zmiennych: %s"
 
-#: SPSSINC_CREATE_DUMMIES.py:203
-msgid "For main-effect dummies, the number of macro names is different from the number of variables."
+msgid ""
+"For main-effect dummies, the number of macro names is different from the "
+"number of variables."
 msgstr ""
-"Liczba nazw makr dla sztucznych zmiennych efektu głównego jest różna od liczby zmiennych."
+"Liczba nazw makr dla sztucznych zmiennych efektu głównego jest różna od liczby"
+" zmiennych."
 
-#: SPSSINC_CREATE_DUMMIES.py:206
 msgid "A macro name was specified without a corresponding root name"
-msgstr ""
-"Podano nazwę makra bez odpowiedniego trzonu nazwy"
+msgstr "Podano nazwę makra bez odpowiedniego trzonu nazwy"
 
-#: SPSSINC_CREATE_DUMMIES.py:269
 msgid "SPSSINC CREATE DUMMIES cannot be used with date or time variables"
 msgstr ""
-"SPSSINC CREATE DUMMIES nie mogą zostać wykorzystane ze zmiennymi daty lub godziny"
+"SPSSINC CREATE DUMMIES nie mogą zostać wykorzystane ze zmiennymi daty lub "
 
-#: SPSSINC_CREATE_DUMMIES.py:433
 msgid "The length of a target name exceeds 64 bytes.  Shorten the root names."
 msgstr ""
 "Długość nazwy zmiennej przewidywanej przekracza 64 bajty. Skróć trzony nazw."
 
-#: SPSSINC_CREATE_DUMMIES.py:453
 msgid "Label"
-msgstr ""
-"Etykieta"
+msgstr "Etykieta"
 
-#: SPSSINC_CREATE_DUMMIES.py:453
 msgid "Variable Creation"
-msgstr ""
-"Tworzenie zmiennych"
+msgstr "Tworzenie zmiennych"
 
-#: SPSSINC_CREATE_DUMMIES.py:478
 msgid "Included Variables"
-msgstr ""
-"Zmienne uwzględnione"
+msgstr "Zmienne uwzględnione"
 
-#: SPSSINC_CREATE_DUMMIES.py:478
 msgid "Macro Definitions"
-msgstr ""
-"Definicje makr"
+msgstr "Definicje makr"
 
-#: SPSSINC_CREATE_DUMMIES.py:557
 msgid "---"
-msgstr ""
-"---"
+msgstr "---"
 
-#: SPSSINC_CREATE_DUMMIES.py:609
 msgid "Create dummy variables"
-msgstr ""
-"Utwórz sztuczne zmienne"
-
-
-
+msgstr "Utwórz sztuczne zmienne"

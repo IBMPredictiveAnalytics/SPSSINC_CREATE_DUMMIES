@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Extension xmlns="http://spss.com/clementine/extensions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" debug="false" version="1.0" xsi:schemaLocation="http://spss.com/clementine/extensions http://xml.spss.com/clementine/extensions/CLEFSpecificationFile.xsd">
+	<ExtensionDetails copyright="Licensed Materials - Property of IBM.  IBM SPSS Products: Statistics Common (C) Copyright IBM Corp. 1989, 2013.  US Government Users Restricted Rights - Use, duplication or  disclosure restricted by GSA ADP Schedule Contract with IBM Corp." description="" id="SPSSINC_CREATE_DUMMIES" label="" provider="SPSS, Inc." providerTag="spss" version="1.0"/>
+	<Resources>
+		<Bundle id="bundle1" path="SPSSINC_CREATE_DUMMIES" type="properties"/>
+	</Resources>
+	<CommonObjects>
+		<Actions>
+			<Action id="SPSSINC_CREATE_DUMMIES_action" imagePath="IBMdialogicon.png" label="Create Dummy Variables" labelKey="SPSSINC_CREATE_DUMMIES_action.LABEL"/>
+		</Actions>
+	</CommonObjects>
+	<UserInterface>
+		<Controls>
+			<MenuItem action="SPSSINC_CREATE_DUMMIES_action" offset="7" showIcon="true" spssMenu="Transform"/>
+		</Controls>
+	</UserInterface>
+	<Node id="SPSSINC_CREATE_DUMMIES" label="Create Dummy Variables" labelKey="SPSSINC_CREATE_DUMMIES.LABEL" type="modelBuilder">
+		<Properties>
+			<Property name="SPSSINC_CREATE_DUMMIES" syntax="SPSSINC CREATE DUMMIES VARIABLE=%%variable%% &#10;%%rootname%% %%twowayroot%% %%threewayroot%%&#10;/OPTIONS ORDER=%%Order%% %%variablelabels%% %%measurementlevel%% %%omitfirst%%&#10;%%macroname%% %%twowaymacro%% %%threewaymacro%%.&#10;"/>
+			<Property description="false" name="SPSSINC_CREATE_DUMMIES_modal"/>
+			<Property description="" descriptionKey="source_vars_tooltip.LABEL" isList="true" label="Variables:" labelKey="source_vars.LABEL" name="source_vars" selectionPool="source_fields" syntax="%%ThisValue%%" valueType="field"/>
+			<Property description="A dummy variable will be created for each distinct value of this variable" descriptionKey="variable_tooltip.LABEL" isList="true" isRequired="true" label="Create Dummy Variables for:" labelKey="variable.LABEL" name="variable" selectionPool="source_fields" syntax="%%ThisValue%%" valueType="field"/>
+			<Property description="" descriptionKey="Macro_tooltip.LABEL" label="Main Effect Dummy Variables" labelKey="Macro.LABEL" name="Macro" syntax="%%ThisValue%%"/>
+			<Property defaultValue="true" description="" descriptionKey="item_9_tooltip.LABEL" label="Create main-effect dummies" labelKey="item_9.LABEL" name="item_9" syntax="%%ThisValue%%±" valueType="boolean"/>
+			<Property defaultValue="" description="Each dummy variable name will start with the rootname followed by &quot;_&quot;" descriptionKey="rootname_tooltip.LABEL" label="Root Names (One Per Selected Variable):" labelKey="rootname.LABEL" name="rootname" syntax="ROOTNAME1=%%ThisValue%%" valueType="string"/>
+			<Property defaultValue="" description="One macro name for each selected variable" descriptionKey="macroname_tooltip.LABEL" label="Macro Name:" labelKey="macroname.LABEL" name="macroname" syntax="MACRONAME1=&quot;%%ThisValue%%&quot;" valueType="string"/>
+			<Property defaultValue="item_12_a" description="" descriptionKey="Order_tooltip.LABEL" label="Value Order" labelKey="Order.LABEL" name="Order" syntax="%%ThisValue%%" valueType="enum">
+				<Enumeration>
+					<Enum description="Create dummies in ascending value order" descriptionKey="item_12_a_tooltip.LABEL" hasSubGroup="false" label="Ascending" labelKey="item_12_a.LABEL" mnemonic="A" mnemonicKey="item_12_a_mnemonic.VALUE" syntax="A" value="item_12_a"/>
+					<Enum description="Create dummies in descending value order" descriptionKey="item_12_b_tooltip.LABEL" hasSubGroup="false" label="Descending" labelKey="item_12_b.LABEL" mnemonic="D" mnemonicKey="item_12_b_mnemonic.VALUE" syntax="D" value="item_12_b"/>
+				</Enumeration>
+			</Property>
+			<Property defaultValue="item_17_a" description="Use either value labels or actual values in the variable labels for the dummy variables" descriptionKey="variablelabels_tooltip.LABEL" label="Dummy Variable Labels" labelKey="variablelabels.LABEL" name="variablelabels" syntax="USEVALUELABELS=%%ThisValue%%" valueType="enum">
+				<Enumeration>
+					<Enum description="" descriptionKey="item_17_a_tooltip.LABEL" hasSubGroup="false" label="Use value labels" labelKey="item_17_a.LABEL" mnemonic="V" mnemonicKey="item_17_a_mnemonic.VALUE" syntax="YES" value="item_17_a"/>
+					<Enum description="" descriptionKey="item_17_b_tooltip.LABEL" hasSubGroup="false" label="Use values" labelKey="item_17_b.LABEL" mnemonic="S" mnemonicKey="item_17_b_mnemonic.VALUE" syntax="NO" value="item_17_b"/>
+				</Enumeration>
+			</Property>
+			<Property description="" descriptionKey="twoway_tooltip.LABEL" label="Two-Way Interactions" labelKey="twoway.LABEL" name="twoway" syntax="%%ThisValue%%"/>
+			<Property defaultValue="false" description="" descriptionKey="item_22_tooltip.LABEL" label="Create dummies for all two-way interactions" labelKey="item_22.LABEL" name="item_22" syntax="%%ThisValue%%±" valueType="boolean"/>
+			<Property defaultValue="" description="One name only" descriptionKey="twowayroot_tooltip.LABEL" label="Root Name:" labelKey="twowayroot.LABEL" name="twowayroot" syntax="ROOTNAME2=%%ThisValue%%" valueType="string"/>
+			<Property defaultValue="" description="Enter one rootname for all two-way dummies.  Start it with &quot;!&quot;" descriptionKey="twowaymacro_tooltip.LABEL" label="Macro name:" labelKey="twowaymacro.LABEL" name="twowaymacro" syntax="MACRONAME2=&quot;%%ThisValue%%&quot;" valueType="string"/>
+			<Property description="" descriptionKey="threeway_tooltip.LABEL" label="Three-Way Interactions" labelKey="threeway.LABEL" name="threeway" syntax="%%ThisValue%%"/>
+			<Property defaultValue="false" description="" descriptionKey="item_24_tooltip.LABEL" label="Create dummies for all three-way interactions" labelKey="item_24.LABEL" name="item_24" syntax="±" valueType="boolean"/>
+			<Property defaultValue="" description="One name only" descriptionKey="threewayroot_tooltip.LABEL" label="Root Name:" labelKey="threewayroot.LABEL" name="threewayroot" syntax="ROOTNAME3=%%ThisValue%%" valueType="string"/>
+			<Property defaultValue="" description="Enter one root name for all three-way dummies.  Start it with &quot;!&quot;" descriptionKey="threewaymacro_tooltip.LABEL" label="Macro name:" labelKey="threewaymacro.LABEL" name="threewaymacro" syntax="MACRONAME3=&quot;%%ThisValue%%&quot;" valueType="string"/>
+			<Property description="" descriptionKey="item_29_tooltip.LABEL" label="Macros" labelKey="item_29.LABEL" name="item_29" syntax="%%ThisValue%%"/>
+			<Property defaultValue="false" description="Omitting the first category is useful for REGRESSION to avoid having a singular matrix" descriptionKey="omitfirst_tooltip.LABEL" label="Omit first dummy category from macro definitions" labelKey="omitfirst.LABEL" name="omitfirst" syntax="OMITFIRST=YES±OMITFIRST=NO" valueType="boolean"/>
+			<Property defaultValue="item_33_a" description="" descriptionKey="measurementlevel_tooltip.LABEL" label="Measurement Level Usage" labelKey="measurementlevel.LABEL" name="measurementlevel" syntax="USEML=%%ThisValue%%" valueType="enum">
+				<Enumeration>
+					<Enum description="Create only a single variable representing scale variable values" descriptionKey="item_33_a_tooltip.LABEL" hasSubGroup="false" label="Do not create dummies for scale variable values" labelKey="item_33_a.LABEL" mnemonic="O" mnemonicKey="item_33_a_mnemonic.VALUE" syntax="YES" value="item_33_a"/>
+					<Enum description="Create a dummy variable for each variable value" descriptionKey="item_33_b_tooltip.LABEL" hasSubGroup="false" label="Create dummies for all variables" labelKey="item_33_b.LABEL" mnemonic="C" mnemonicKey="item_33_b_mnemonic.VALUE" syntax="NO" value="item_33_b"/>
+				</Enumeration>
+			</Property>
+		</Properties>
+		<SelectionPool id="source_fields" type="fields"/>
+		<UserInterface>
+			<Tabs>
+				<Tab helpLink="SPSSINC_CREATE_DUMMIES.htm">
+					<PropertiesPanel>
+						<SourceFieldsBrowser copyFields="false" mnemonic="I" mnemonicKey="source_vars_mnemonic.VALUE" property="source_vars" selectionPool="source_fields" storage="[real integer date time string]">
+							<Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+						</SourceFieldsBrowser>
+						<MultiFieldChooserControl mnemonic="C" mnemonicKey="variable_mnemonic.VALUE" property="variable" storage="[real integer string]">
+							<Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="0" gridWidth="1" rowWeight="1.0"/>
+						</MultiFieldChooserControl>
+						<PropertiesPanel id="Macro" label="Main Effect Dummy Variables" labelKey="Macro.LABEL">
+							<Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+							<CheckBoxControl labelAbove="true" mnemonic="M" mnemonicKey="item_9_mnemonic.VALUE" property="item_9">
+								<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+							</CheckBoxControl>
+							<TextBoxControl mnemonic="O" mnemonicKey="rootname_mnemonic.VALUE" property="rootname">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="0.0"/>
+							</TextBoxControl>
+							<TextBoxControl mnemonic="N" mnemonicKey="macroname_mnemonic.VALUE" property="macroname">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="2" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+							</TextBoxControl>
+						</PropertiesPanel>
+						<RadioButtonGroupControl property="Order" rows="2" useSubPanel="false">
+							<Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="2" gridWidth="1" rowWeight="1.0"/>
+							<RadioButton property="item_12_a"/>
+							<RadioButton property="item_12_b"/>
+						</RadioButtonGroupControl>
+						<RadioButtonGroupControl property="variablelabels" rows="2" useSubPanel="false">
+							<Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+							<RadioButton property="item_17_a"/>
+							<RadioButton property="item_17_b"/>
+						</RadioButtonGroupControl>
+						<PropertiesPanel id="twoway" label="Two-Way Interactions" labelKey="twoway.LABEL">
+							<Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="2" gridWidth="1" rowWeight="1.0"/>
+							<CheckBoxControl labelAbove="true" mnemonic="T" mnemonicKey="item_22_mnemonic.VALUE" property="item_22">
+								<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+							</CheckBoxControl>
+							<TextBoxControl mnemonic="E" mnemonicKey="twowayroot_mnemonic.VALUE" property="twowayroot">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="0.0"/>
+							</TextBoxControl>
+							<TextBoxControl mnemonic="C" mnemonicKey="twowaymacro_mnemonic.VALUE" property="twowaymacro">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="2" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+							</TextBoxControl>
+						</PropertiesPanel>
+						<PropertiesPanel id="threeway" label="Three-Way Interactions" labelKey="threeway.LABEL">
+							<Layout columnWeight="1.0" fill="both" gridColumn="2" gridRow="3" gridWidth="1" rowWeight="1.0"/>
+							<CheckBoxControl labelAbove="true" mnemonic="H" mnemonicKey="item_24_mnemonic.VALUE" property="item_24">
+								<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+							</CheckBoxControl>
+							<TextBoxControl property="threewayroot">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="0.0"/>
+							</TextBoxControl>
+							<TextBoxControl property="threewaymacro">
+								<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="2" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+							</TextBoxControl>
+						</PropertiesPanel>
+						<PropertiesPanel id="item_29" label="Macros" labelKey="item_29.LABEL">
+							<Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="3" gridWidth="1" rowWeight="1.0"/>
+							<CheckBoxControl mnemonic="F" mnemonicKey="omitfirst_mnemonic.VALUE" property="omitfirst">
+								<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+							</CheckBoxControl>
+							<StaticText text="Note: It is conventional to start macro names with !." textKey="item_11.LABEL">
+								<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+							</StaticText>
+						</PropertiesPanel>
+						<RadioButtonGroupControl property="measurementlevel" rows="2" useSubPanel="false">
+							<Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="4" gridWidth="1" rowWeight="1.0"/>
+							<RadioButton property="item_33_a"/>
+							<RadioButton property="item_33_b"/>
+						</RadioButtonGroupControl>
+						<StaticText text="This dialog requires the Python Essentials" textKey="item_42.LABEL">
+							<Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="5" gridWidth="1" rowWeight="0.0"/>
+						</StaticText>
+						<StaticText text="This dialog was created using a later version of PASW Statistics\nand certain features may not function as intended." textKey="v17_warning.LABEL">
+							<Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="6" gridWidth="1" rowWeight="1.0"/>
+						</StaticText>
+					</PropertiesPanel>
+				</Tab>
+			</Tabs>
+		</UserInterface>
+	</Node>
+</Extension>

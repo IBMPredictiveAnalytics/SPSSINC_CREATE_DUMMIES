@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Crear un conjunto de variables auxiliares a partir de valores de variable</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Crear un conjunto de variables auxiliares a partir de valores de variable</h1>Este procedimiento acepta una lista de variables y produce un conjunto de variables auxiliares que representan sus valores. Puede   producir valores auxiliares para variables individuales, valores auxiliares para términos   de interacción bidireccional y/o valores auxiliares para interacciones tridireccionales. Pasa   los datos omitiendo los casos excluidos por el filtro actual   y crea valores auxiliares de los valores encontrados.
+
+  <p>Para las variables de escala, de forma predeterminada, produce solo una variable   en lugar de valores auxiliares que se pueden utilizar para producir los términos de interacción.</p>
+
+  <p><span class="runinhead">Crear variables auxiliares para.</span>
+  Elija las variables a partir de las que va a crear conjuntos de variables auxiliares.
+  Habitualmente estas variables serían categóricas, pero puede resultar de utilidad seleccionar las variables de escala para compilar los términos de interacción. Se pueden usar variables de cadena y numéricas, pero no se permiten variables de fecha y tiempo.</p>
+
+  <p><span class="runinhead">Variables auxiliares de efecto principal.</span>
+  Seleccione la casilla <span name=".screen">Crear valores auxiliares de efecto   principal</span> para crear un conjunto de variables auxiliares para   cada variable seleccionada.</p>
+
+  <p><span class="runinhead">Nombres raíz.</span> Especifique los nombres   que se van a utilizar como prefijo de todas las variables auxiliares para cada variable   seleccionada. Especifique tantos nombres como variables seleccionadas,   separadas por un espacio en blanco. Los nombres auxiliares tendrán el formato nombre-raíz_n. Si ya existe una variable con ese nombre, se sustituirá.</p>
+
+  <p><span class="runinhead">Nombre de macro.</span> Si se especifican   nombres en este campo, se creará una macro para cada conjunto de   variables auxiliares o variable de escala. Especifique tantos nombres como   variables seleccionadas si es necesaria la generación de macros. Es   usual comenzar cada nombre de macro con "!".</p>
+
+  <p><span class="runinhead">Interacciones bidireccionales e interacciones tridireccionales.</span> Siga el mismo procedimiento que para las variables auxiliares   de efecto principal, pero especifique solo un único nombre raíz y nombre de macro   (si lo desea). Los nombres auxiliares tendrán la forma<br>
+  nombre-de-raíz_m_n,<br>
+  y se sustituirán las variables existentes.</p>
+
+  <p><span class="runinhead">Etiquetas de variable auxiliar</span>:   de forma predeterminada, las etiquetas de las variables auxiliares se construyen a partir   del nombre de variable de entrada y la etiqueta del valor adecuado. Seleccione   <span class=".screen">Utilizar valores</span> para utilizar en su lugar los   valores. Si un valor no tiene etiqueta, se utiliza el mismo valor en la etiqueta.</p>
+
+  <p><span class="runinhead">Orden de valor.</span> Seleccione   <span class=".screen">Ascendente</span> o <span class=
+  ".screen">Descendente</span> para el orden de clasificación de las   variables auxiliares. Es muy útil a la hora de generar una macro.</p>
+
+  <p><span class="runinhead">Omitir la primera categoría auxiliar de las definiciones de macro.</span> Seleccione esta casilla de verificación para omitir la primera variable auxiliar de cada definición de macro. Resulta conveniente   para el procedimiento REGRESSION para impedir que tenga una matriz de regresor singular. Si no hay términos de interacción generados, esto significa que el primer   auxiliar de cada variable se omite de la definición de macro. Si hay términos de interacción,   las variables relacionadas con esa categoría para las variables de entrada   se omiten de la definición de macro.</p>
+
+  <p class="bullet">• Depende del valor Orden de valor qué categorías   se consideren primero.</p>
+
+  <p class="bullet">• Las variables de escala no se ven afectadas por este valor.</p>
+
+  <p><span class="runinhead">Uso del nivel de medición.</span>
+  Las variables categóricas producen un valor auxiliar para cada valor distinto.
+  Las variables de escala se representan mediante una única variable. Seleccione   <span class=".screen">No crear valores auxiliares para los valores de variable de escala</span> para obtener este comportamiento. Seleccione <span class=
+  ".screen">Crear valores auxiliares para todas las variables</span> para omitir el   nivel de medición y generar una variable para cada valor incluso para las   variables de escala.</p>
+
+  <h2>Características adicionales</h2>
+
+  <p>Este cuadro de diálogo genera la sintaxis del comando de extensión SPSSINC CREATE DUMMIES. Para mostrar la ayuda de este comando, ejecute la siguiente sintaxis:</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Requisitos</h2>
+
+  <p>Este cuadro de diálogo requiere el complemento de integración de Python y el comando de extensión SPSSINC CREATE DUMMIES. Para IBM® SPSS® Statistics 19 y versiones posteriores, el complemento y el comando de extensión se instalan con el paquete Python Essentials. Si desea más información, consulte Cómo obtener complementos de integración, en Sistema principal &gt; Preguntas más frecuentes en el sistema de ayuda de IBM SPSS Statistics. Si ha descargado SPSSINC CREATE DUMMIES de la Comunidad de SPSS, siga las instrucciones del archivo léeme asociado.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

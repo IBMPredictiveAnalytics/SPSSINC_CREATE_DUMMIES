@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Création d'un ensemble de variables dummy à partir des valeurs d'une variable</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Création d'un ensemble de variables dummy à partir des valeurs d'une variable</h1>Cette procédure accepte une liste de variables et génère un ensemble de variables dummy représentant leurs valeurs. Elle permet de générer des variables dummy pour des variables individuelles, des termes d'interaction bidirectionnels et/ou des interactions tridirectionnelles. Elle transfère les données sans tenir compte des observations exclues par le filtre actuel et crée des variables dummy pour les valeurs trouvées.
+
+  <p>Pour les variables d'échelle, par défaut, elle génère une seule variable au lieu de plusieurs variables dummy disponibles lors de la génération des termes d'interaction.</p>
+
+  <p><span class="runinhead">Créer des variables dummy pour :</span>
+  Choisissez les variables à partir desquelles vous souhaitez créer des ensembles de variables dummy.
+  En règle générale, il s'agit de variables catégorielles, mais les variables d'échelle peuvent être utiles pour générer des termes d'interaction. Des variables de chaîne et numériques peuvent être utilisées mais pas des variables de date ou d'heure.</p>
+
+  <p><span class="runinhead">Effet principal des variables dummy :</span>
+  Cochez la case <span name=".screen">Créer l'effet principal des variables dummy</span> pour créer un ensemble de variables dummy pour chaque variable sélectionnée.</p>
+
+  <p><span class="runinhead">Nom de racine :</span> Indiquez le nom à utiliser comme préfixe de toutes les variables dummy pour chaque variable sélectionnée. Entrez autant de noms que de variables sélectionnées, en les séparant par un espace. Les noms factices auront la forme nomracine_n. Si une variable possède déjà ce nom, celui-ci sera remplacé.</p>
+
+  <p><span class="runinhead">Nom de macro :</span> Si des noms sont saisis dans ce champ, une macro est créée pour chaque ensemble de variables dummy ou de variables d'échelle. Entrez autant de noms que de variables sélectionnées si la génération de macro est requise. Il est admis de commencer chaque nom de macro par "!".</p>
+
+  <p><span class="runinhead">Interactions bidirectionnelles et interactions tridirectionnelles :</span> Suivez la même procédure que celle de l'effet principal des variables dummy, mais ne saisissez qu'un nom de racine et un nom de macro (si besoin). Les noms factices auront la forme<br>
+  nomracine_m_n,<br>
+  et les variables existantes seront remplacées.</p>
+
+  <p><span class="runinhead">Libellés de variables dummy :</span> Par défaut, les libellés des variables dummy sont construits à partir du nom de la variable d'entrée et du libellé de valeur approprié. Sélectionnez <span class=".screen">Utiliser les valeurs</span> pour utiliser les valeurs à la place. Si une valeur n'est pas étiquetée, la valeur elle-même est utilisée dans le libellé.</p>
+
+  <p><span class="runinhead">Ordre des valeurs :</span> Choisissez l'ordre <span class=".screen">Croissant</span> ou <span class=
+ ".screen">Décroissant</span> pour les variables dummy. Ceci est utile lors de la génération de macros.</p>
+
+  <p><span class="runinhead">Ignorer la première catégorie de variable dummy dans les définitions de macro :</span> Cochez cette case pour ignorer la première variable dummy dans la définition de chaque macro. Ceci se révèle particulièrement utile dans la procédure REGRESSION afin d'éviter d'avoir une matrice de facteurs de régression singulière. Si aucun terme d'interaction n'est généré, cela signifie que la première variable dummy de chaque variable est ignorée dans la définition de la macro. Si des termes d'interaction sont générés, les variables associées à cette catégorie pour n'importe quelle variables d'entrée sont ignorées de la définition de macro.</p>
+
+  <p class="bullet">• Les catégories considérées comme premières varient en fonction du paramètre d'ordre des valeurs.</p>
+
+  <p class="bullet">• Ce paramètre n'a aucune incidence sur les variables d'échelle.</p>
+
+  <p><span class="runinhead">Utilisation du niveau de mesure :</span>
+  Les variables catégorielles génèrent une variable dummy pour chaque valeur distincte.
+  Les variables d'échelle sont représentées par une seule variable. Choisissez <span class=".screen">Ne pas créer de variables dummy pour les valeurs de variable d'échelle</span> dans ce cas. Choisissez <span class=
+ ".screen">Créer des variables dummy pour toutes les variables</span> pour ne pas tenir compte du niveau de mesure et générer une variable pour chaque valeur, y compris pour les variables d'échelle.</p>
+
+  <h2>Fonctions supplémentaires</h2>
+
+  <p>Cette boîte de dialogue génère une syntaxe pour la commande d'extension SPSSINC CREATE DUMMIES. Pour afficher l'aide de cette commande, exécutez la syntaxe suivante :</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Conditions requises</h2>
+
+  <p>Cette boîte de dialogue requiert le plug-in d'intégration pour Python et la commande d'extension SPSSINC CREATE DUMMIES. Pour IBM® SPSS® Statistics 19 et versions ultérieures, le plug-in et la commande d'extension sont installés avec le pack Essentials for Python. Pour plus d'informations, reportez-vous à
+Comment obtenir des plug-in d'intégration dans Système central &gt; Questions fréquemment posées dans le système d'aide d'IBM SPSS Statistics. Si vous avez téléchargé SPSSINC CREATE DUMMIES depuis la communauté SPSS, suivez les instructions dans le fichier associé Lisezmoi.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>
