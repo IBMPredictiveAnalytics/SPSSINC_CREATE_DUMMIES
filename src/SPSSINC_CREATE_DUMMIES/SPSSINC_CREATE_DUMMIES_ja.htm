@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+
+"text/html; charset=utf-8">
+
+  <title>変数の値からダミー変数のセットを作成する</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>変数の値からダミー変数のセットを作成する</h1>この手順では、変数のリストを受け入れ、それらの値を表すダミー変数のセットを生成します。個別の変数のダミー、2 次交互作用項のダミー、または 3 次交互作用のダミーを生成できます。現在のフィルターにより除外されるケースを無視してデータを渡し、検出された値に対してダミーを作成します。
+
+  <p>スケール変数の場合、デフォルトで、ダミーの代わりに 1 つだけ変数が生成され、これを交互作用項の生成に使用できます。</p>
+
+  <p><span class="runinhead">次のダミー変数を作成。</span>
+  ダミー変数のセットの作成元となる変数を選択します。通常これはカテゴリ変数になりますが、交互作用項を作成するためにスケール変数を選択することもできます。文字列型変数も数値型変数も使用できますが、日付および時間変数は使用できません。
+</p>
+
+  <p><span class="runinhead">主効果ダミー変数。</span>
+  <span name=".screen">「主効果ダミーの作成」</span>ボックスにチェック マークを付けて、選択した変数ごとにダミー変数を作成します。</p>
+
+  <p><span class="runinhead">ルート名。</span> 選択した変数ごとに、すべてのダミー変数の接頭辞として使用される名前を指定します。選択した変数の数と同じ数の名前を、ブランクで区切って入力します。ダミー名の形式は rootname_n となります。同じ名前の変数が既に存在する場合は置き換えられます。</p>
+
+  <p><span class="runinhead">マクロ名。</span> このフィールドに名前が入力されると、ダミー変数またはスケール変数の各セットに対してマクロが作成されます。マクロ生成が必要な場合は、選択した変数と同じ数の名前を入力します。通常、各マクロ名の先頭に「!」を付けます。</p>
+
+  <p><span class="runinhead">2 次交互作用および 3 次交互作用。</span> 主効果ダミー変数と同様の手順にしたがいますが、ルート名およびマクロ名 (必要な場合) は 1 つだけ入力します。ダミー名の形式は次のようになります。<br>
+  rootname_m_n。<br>
+  既存の変数は置き換えられます。</p>
+
+  <p><span class="runinhead">ダミー変数のラベル。</span> デフォルトでは、ダミー変数のラベルは入力変数名と適切な値ラベルから構成されます。値を使用する場合は、<span class=".screen">「値を使用します」</span>を選択します。値にラベルがない場合、値自体がラベルに使用されます。
+</p>
+
+  <p><span class="runinhead">値の順序。</span> ダミー変数のソート順として、<span class=".screen">「昇順」</span>または<span class=".screen">「降順」</span>を選択します。主に、マクロの生成と接続する場合に役立ちます。</p>
+
+  <p><span class="runinhead">マクロ定義から最初のダミー カテゴリを除外。</span> 各マクロ定義から最初のダミー変数を除外する場合に、このボックスにチェック マークを付けます。これは、特異回帰行列を避けるために REGRESSION プロシージャで用いると便利です。交互作用項が生成されない場合、これは各変数の最初のダミー変数がマクロ定義から除外されることを意味します。交互作用項が存在する場合は、入力変数でそのカテゴリに関係する変数はマクロ定義から除外されます。</p>
+
+  <p class="bullet">• どのカテゴリが最初と見なされるかは、「値の順序」設定に依存します。</p>
+
+  <p class="bullet">• スケール変数はこの設定の影響を受けません。</p>
+
+  <p><span class="runinhead">測定の尺度の使用法。</span>
+  カテゴリ変数では、異なる値ごとにダミーが生成されます。
+  スケール変数は、単一の変数により表現されます。この動作の場合は、<span class=".screen">「スケール変数の値にダミーを作成しない」</span>を選択します。測定の尺度を無視して、スケール変数の場合でも値ごとに変数を生成する場合は、<span class=
+  ".screen">「すべての変数でダミーを作成する」</span>を選択します。</p>
+
+  <h2>その他の機能</h2>
+
+  <p>このダイアログは、SPSSINC CREATE DUMMIES 拡張コマンドのシンタックスを生成します。このコマンドのヘルプを表示するには、次のシンタックスを実行します。</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP</p>
+
+  <h2>要件</h2>
+
+  <p>このダイアログには Integration Plug-In for Python と SPSSINC CREATE DUMMIES 拡張コマンドが必要です。IBMR SPSSR Statistics 19 以上の場合、Plug-in と拡張コマンドが Essentials for Python パッケージとともにインストールされます。詳しくは、IBM SPSS Statistics ヘルプ システムの「コア システム」&gt;「よくある質問」の『Integration Plug-In の取得方法』を参照してください。SPSS Community から SPSSINC CREATE DUMMIES をダウンロードした場合、関連する readme ファイルの指示に従ってください。</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

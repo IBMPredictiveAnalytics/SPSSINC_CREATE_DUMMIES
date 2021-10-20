@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Crea un insieme di variabili dummy dai valori di una variabile</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Crea un insieme di variabili dummy dai valori di una variabile</h1>Questa procedura
+accetta un elenco di variabili e produce un insieme di variabili dummy che rappresentano i loro valori. Può
+produrre valori dummy per singole variabili, per termini di interazione a due vie e/o per interazioni a tre vie. Passa
+i dati ignorando i casi esclusi dal filtro corrente e crea valori dummy per i valori trovati.
+
+  <p>Per
+le variabili di scala, per impostazione predefinita, produce solo una variabile invece dei valori dummy che è possibile
+utilizzare nella produzione di termini di interazione.</p>
+
+  <p><span class="runinhead">Crea variabili dummy per.</span>
+  Scegliere le variabili da cui creare insiemi di variabili dummy.
+  In genere si tratta
+di variabili categoriali, ma è possibile selezionare anche le variabili di scala per creare
+i termini di interazione. È possibile utilizzare sia le variabili stringa che numeriche, ma le variabili data e tempo non
+sono consentite.</p>
+
+  <p><span class="runinhead">Variabili dummy effetto principale.</span>
+  Selezionare la casella <span name=".screen">Crea valori dummy effetto principale</span>
+per creare un insieme di variabili dummy per ogni variabile selezionata.</p>
+
+  <p><span class="runinhead">Nomi radice.</span> Specificare i nomi da utilizzare come prefisso
+di tutte le variabili dummy per ogni variabile selezionata. Immettere un numero di nomi pari al numero di variabili selezionate separati da uno spazio. I nomi
+dummy avranno il formato rootname_n. Se già esiste una variabile con quel nome, viene sostituita.</p>
+
+  <p><span class="runinhead">Nome di macro.</span> Se si immettono dei nomi in questo campo, verrà creata una macro
+per ogni insieme di variabili dummy o variabili di scala. Immettere un numero di nomi pari al numero di variabili selezionate se è richiesta la
+generazione di macro. Per convenzione, ogni nome di macro inizia con "!".</p>
+
+  <p><span class="runinhead">Interazioni a due vie e a tre vie.</span> Seguire la stessa procedura seguita per Variabili dummy effetto principale, ma
+immettere un solo nome radice e nome di macro (se lo si desidera). I nomi dummy hanno il formato<br>
+  rootname_m_n,<br>
+  e le variabili esistenti verranno sostituite.</p>
+
+  <p><span class="runinhead">Etichette di variabili dummy.</span> Per impostazione predefinita,
+le etichette per le variabili dummy vengono create dal nome della variabile di input e dall'etichetta valore appropriata. Selezionare
+<span class=".screen">Utilizza valori</span> per utilizzare i valori. Se un valore è senza etichetta, verrà utilizzato nell'etichetta.</p>
+
+  <p><span class="runinhead">Ordine valori.</span> Scegliere
+  <span class=".screen">Crescente</span> o <span class=
+  ".screen">Decrescente</span> per il criterio di ordinamento delle variabili dummy. Ciò è
+particolarmente utile nella connessione con la creazione di una macro.</p>
+
+  <p><span class="runinhead">Ometti prima categoria dummy dalle definizioni di macro.</span> Selezionare questa
+casella per omettere la prima variabile dummy da ogni definizione di macro. Ciò è utile per la procedura
+  REGRESSION per evitare di avere una sola matrice di regressione. Se non vengono generati dei termini di interazione,
+il primo valore dummy per ogni variabile viene omesso dalla definizione della macro. Se esistono dei termini di interazione,
+le variabili che implicano quella categoria per una qualsiasi delle variabili di input vengono omesse dalla definizione della macro.</p>
+
+  <p class="bullet">• Quali categorie vengono considerate per prime dipende dall'impostazione Ordine valori.</p>
+
+  <p class="bullet">• Le variabili di scala non vengono interessate da questa impostazioni.</p>
+
+  <p><span class="runinhead">Utilizzo del livello di misurazione.</span>
+  Le variabili categoriali producono un valore dummy per ogni singolo valore.
+  Le variabili di scala
+sono rappresentate da una singola variabile. Scegliere
+<span class=".screen">Non creare valori dummy per i valori delle variabili di scala</span> per ottenere questo comportamento. Scegliere
+<span class=
+  ".screen">Crea valori dummy per tutte le variabili</span> per ignorare il livello di misurazione e generare una variabile per ogni valore, anche
+per le variabili di scala.</p>
+
+  <h2>Funzioni aggiuntive</h2>
+
+  <p>Questa finestra di dialogo genera la sintassi per il comando di estensione SPSSINC CREATE DUMMIES. Per visualizzare la guida per questo comando, utilizzare la sintassi riportata di seguito:</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Requisiti</h2>
+
+  <p>Questa finestra di dialogo richiede Integration Plug-In for Python e il comando di estensione SPSSINC CREATE DUMMIES. Per IBM® SPSS® Statistics 19 e
+versioni successive, il plug-in e il comando di estensione vengono installati con il package
+Essentials for Python. Per ulteriori informazioni, consultare Come ottenere i plug-in di integrazione
+in Sistema principale &gt; Domande frequenti nella guida in linea di IBM SPSS Statistics. Se il comando di estensione SPSSINC CREATE DUMMIES è stato scaricato da SPSS Community, seguire le istruzioni nel file readme associato.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

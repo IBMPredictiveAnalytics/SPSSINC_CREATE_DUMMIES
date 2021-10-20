@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Dummy-Variablenset aus Werten einer Variablen erstellen</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Dummy-Variablenset aus Werten einer Variablen erstellen</h1>Bei dieser Prozedur wird aus einer Liste von Variablen ein Set von Dummy-Variablen erstellt, die die zugehörigen Werte darstellen. Dabei können Dummys für einzelne Variablen sowie Zweiwege-
+und/oder Dreiwegeinteraktionsterme erstellt werden. Die Prozedur gibt die Daten weiter, wobei alle durch den aktuellen Filter ausgeschlossenen Fälle ignoriert werden, und erstellt Dummys für die gefundenen Werte.
+
+  <p>Bei metrischen Variablen erstellt sie standardmäßig keine Dummys, sondern nur eine Variable, die zum Erstellen von Interaktionstermen verwendet werden kann.</p>
+
+  <p><span class="runinhead">Dummy-Variablen erstellen für.</span>
+  Wählen Sie Variablen aus, aus denen Sie Sets von Dummy-Variablen erstellen.
+  In der Regel handelt es sich dabei um kategoriale Variablen. Aber es ist sinnvoll, metrische Variablen zum Erstellen von Interaktionstermen auszuwählen. Es können sowohl Zeichenfolgevariablen als auch numerische Variablen verwendet werden. Datums- und Zeitvariablen sind jedoch nicht zulässig.</p>
+
+  <p><span class="runinhead">Dummy-Variable für Haupteffekte.</span>
+  Wählen Sie das Feld <span name=".screen">Dummys für Haupteffekte erstellen</span> aus, um ein Set von Dummy-Variablen für die einzelnen ausgewählten Variablen zu erstellen.</p>
+
+  <p><span class="runinhead">Stammnamen.</span> Geben Sie Namen an, die als Präfix für alle Dummy-Variablen für die einzelnen ausgewählten Variablen verwendet werden sollen. Geben Sie für jede ausgewählte Variable einen entsprechenden Namen an unde trennen Sie die einzelnen Namen durch ein Leerzeichen. Für die Dummy-Namen wird das Format "stammname_n" verwendet. Wenn eine Variable mit diesem Namen bereits vorhanden ist, wird sie ersetzt.</p>
+
+  <p><span class="runinhead">Makroname.</span> Wenn Namen in dieses Feld eingegeben werden, wird für jedes Set von Dummy-Variablen oder metrischen Variablen ein Makro erstellt. Geben Sie für jede ausgewählte Variable einen entsprechenden Namen ein, wenn eine Makrogenerierung erforderlich ist. In der Regel wird ein Ausrufezeichen (!) als erstes Zeichen des Makronamens verwendet.</p>
+
+  <p><span class="runinhead">Zweiwege- und Dreiwegeinteraktionen.</span> Gehen Sie hierbei genauso wie bei der Prozedur "Dummy-Variablen für Haupteffekte" vor. Geben Sie jedoch nur einen einzigen Stammnamen und einen Makronamen ein (bei Bedarf). Für Dummy-Namen wird das Format<br>
+"stammname_m_n" verwendet.<br>
+  Vorhandene Variablen werden ersetzt.</p>
+
+  <p><span class="runinhead">Beschriftungen für Dummy-Variablen</span> Beschriftungen für Dummy-Variablen werden standardmäßig aus dem Namen der Eingabevariablen und der entsprechenden Wertbeschriftung erstellt. Wählen Sie die Option <span class=".screen">Werte verwenden</span> aus, um stattdessen die Werte zu verwenden. Wenn für einen Wert keine Beschriftung vorliegt, wird der Wert selbst in der Beschriftung verwendet.</p>
+
+  <p><span class="runinhead">Wertreihenfolge.</span> Wählen Sie <span class=".screen">Aufsteigend</span> oder <span class=".screen">Absteigend</span> als Sortierreihenfolge der Dummy-Variablen aus. Dies ist vor allem in Verbindung mit der Erstellung eines Makros sinnvoll.</p>
+
+  <p><span class="runinhead">Erste Dummy-Kategorie in Makrodefinitionen übergehen.</span> Wählen Sie dieses Feld aus, um die erste Dummy-Variable
+in den einzelnen Makrodefinitionen zu übergehen. Dies ist bei der Prozedur REGRESSION nützlich, um das Erstellen einer singulären Regressormatrix zu vermeiden. Wenn keine Interaktionsterme generiert werden, wird der erste Dummy für jede Variable in der Makrodefinition übergangen. Wenn keine Interaktionsterme vorhanden sind, werden Variablen, die diese Kategorie für eine der Eingabevariablen einschließen, in der Makrodefinition übergangen.</p>
+
+  <p class="bullet">•&nbsp;Welche Kategorien als erste Kategorien betrachtet werden, ist von der Einstellung für "Wertreihenfolge" abhängig.</p>
+
+  <p class="bullet">•&nbsp;Diese Einstellung wirkt sich nicht auf metrische Variablen aus.</p>
+
+  <p><span class="runinhead">Messniveauverwendung.</span>
+  Kategoriale Variablen erstellen einen Dummy für alle einzelnen Werte.
+  Metrische Variablen werden durch eine einzige Variable dargestellt. Wählen Sie die Option <span class=".screen">Keine Dummys für metrische Variablenwerte erstellen</span> für dieses Verhalten aus. Wählen Sie <span class=".screen">Dummys für alle Variablen erstellen</span> aus, um das Messniveau zu ignorieren und eine Variable für die einzelnen Werte, einschließlich der metrischen Werte, zu erstellen.</p>
+
+  <h2>Weitere Funktionen</h2>
+
+  <p>In diesem Dialogfeld wird Syntax für den Erweiterungsbefehl SPSSINC CREATE DUMMIES generiert. Führen Sie folgende Syntax aus, um Hilfe für diesen Befehl anzuzeigen:</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Anforderungen</h2>
+
+  <p>Für dieses Dialogfeld sind das Integration Plug-In for Python und der Erweiterungsbefehl SPSSINC CREATE DUMMIES erforderlich. Bei IBM® SPSS® Statistics 19 und höher werden das Plug-In und der Erweiterungsbefehl mit dem Paket "Essentials for Python" installiert. Weitere Informationen finden Sie im Hilfesystem zu IBM SPSS Statistics unter "Core-System &gt; Häufig gestellte Fragen" im Thema "Beziehen von Integrations-Plug-ins". Wenn Sie SPSSINC CREATE DUMMIES aus der SPSS Community heruntergeladen haben, folgen Sie den Anweisungen in der zugehörigen Readme-Datei.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

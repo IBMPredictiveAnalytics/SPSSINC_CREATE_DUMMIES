@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>為變數值建立一組虛擬變數</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>為變數值建立一組虛擬變數</h1>此程序接受一組變數，並產生一組代表其值的虛擬變數。它可以產生個別變數的虛擬變數、雙向互動項目的虛擬變數，及/或三向互動的虛擬變數。它會傳遞資料，忽略目前過濾器排除的任何觀察值，並針對發現的值建立虛擬變數。<p>對於比例變數，依預設只會產生一個變數，而不是可用來產生互動項目的多個虛擬變數。</p>
+
+  <p><span class="runinhead">為其建立虛擬變數。</span>
+  選擇要從中建立一組虛擬變數的變數。一般說來，這些會是種類變數，但可以選取比例變數來有效建置互動項目。字串及數值變數都可以使用，但不允許使用日期和時間變數。</p>
+
+  <p><span class="runinhead">主效應虛擬變數。</span>
+  勾選<span name=".screen">建立主效應虛擬變數</span>方框可為每一個選取的變數建立一組虛擬變數。</p>
+
+  <p><span class="runinhead">根名稱。</span> 指定要用作每一個所選變數的所有虛擬變數字首的名稱。輸入與所選變數一樣多的名稱，以空白區隔。虛擬名稱的格式為 rootname_n。如果具有該名稱的變數已存在，則會將其取代。</p>
+
+  <p><span class="runinhead">巨集名稱。</span> 如果在此欄位中輸入了名稱，將為每一組虛擬變數或比例變數建立一個巨集。如果需要產生巨集，請輸入與所選變數一樣多的名稱。依慣例，每一個巨集名稱均以 "!" 開頭。</p>
+
+  <p><span class="runinhead">雙向互動與三向互動。</span> 遵循與「主效應虛擬變數」的相同程序，但只輸入單一根名稱和巨集名稱（如果需要的話）。虛擬名稱的格式將為 <br>rootname_m_n<br>，並會取代現有變數。</p>
+
+  <p><span class="runinhead">虛擬變數標籤</span> 依預設，虛擬變數標籤是透過輸入變數名稱和適當的值標籤建構的。選取<span class=".screen">使用值</span>可改用值。如果未對值進行標註，則會在標籤中使用該值。</p>
+
+  <p><span class="runinhead">值順序。</span> 選擇<span class=".screen">遞增</span>或<span class=".screen">遞減</span>作為虛擬變數的排序順序。在產生巨集時，這會相當有用。</p>
+
+  <p><span class="runinhead">省略巨集定義中的第一個虛擬種類。</span> 勾選此方框以省略每一個巨集定義中的第一個虛擬變數。這樣可為 REGRESSION 程序提供便利，以避免具有特異迴歸自變數矩陣。如果沒有產生任何互動項目，則表示從巨集定義中省略了的每一個變數的第一個虛擬變數。如果有互動項目，則會忽略巨集定義中包含任何輸入變數種類的變數。</p>
+
+  <p class="bullet">• 先考量哪些種類視值順序設定而定。</p>
+
+  <p class="bullet">• 此設定不影響比例變數。</p>
+
+  <p><span class="runinhead">測量層次用法。</span>
+  種類變數會為每一個不同的值產生一個虛擬變數。比例變數由單一變數代表。針對此行為選擇<span class=".screen">不要為比例變數值建立虛擬變數</span>。選擇<span class=
+  ".screen">為所有變數建立虛擬變數</span>，以忽略測量層次並為每一個值產生變數，即使是比例變數亦如此。</p>
+
+  <h2>其他特性</h2>
+
+  <p>此對話框會產生 SPSSINC CREATE DUMMIES 延伸指令的語法。若要顯示此指令的說明，請執行下列語法：
+
+  </p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>需求</h2>
+
+  <p>此對話框需要 Integration Plug-In for Python 及 SPSSINC CREATE DUMMIES 延伸指令。對於 IBM® SPSS® Statistics 19 及更高版本，Plug-In 及延伸指令會隨 Essentials for Python 套件一起安裝。如需相關資訊，請參閱 IBM SPSS Statistics 說明系統中「核心系統」&gt;「常見問題」下的「如何取得 Integration Plug-In」。如果您已從 SPSS 社群下載 SPSSINC CREATE DUMMIES，請遵循相關 Readme 檔中的指示。</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

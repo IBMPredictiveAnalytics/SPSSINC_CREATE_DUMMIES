@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Utwórz zestaw sztucznych zmiennych z wartości zmiennej</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Utwórz zestaw sztucznych zmiennych z wartości zmiennej</h1>Ta procedura akceptuje listę zmiennych oraz tworzy zestaw sztucznych zmiennych przedstawiający ich wartości. Może tworzyć sztuczne zmienne dla poszczególnych zmiennych, dla składników interakcji drugiego rzędu i/lub interakcji trzeciego rzędu. Przekazuje dane, ignorując wszystkie obserwacje wykluczone przez bieżący filtr i tworzy sztuczne zmienne dla każdej znalezionej wartości.
+
+  <p>W przypadku zmiennych ilościowych procedura domyślnie tworzy tylko jedną zmienną zamiast zmiennych sztucznych. Utworzoną zmienną można użyć do generowania składników interakcji.</p>
+
+  <p><span class="runinhead">Utwórz sztuczne zmienne dla:</span>
+  Wybierz zmienną, dla której zostanie utworzony zestaw zmiennych sztucznych.
+  Zwykle wybiera się zmienne jakościowe, ale w celu budowy składników interakcji można też wybrać zmienne ilościowe. Można użyć zmiennych łańcuchowych i zmiennych numerycznych, ale zmienne daty i godziny są zabronione.</p>
+
+  <p><span class="runinhead">Zmienne sztuczne efektu głównego.</span>
+  Zaznacz pole wyboru <span name=".screen">Utwórz sztuczne zmienne efektu głównego</span>, aby utworzyć zestaw zmiennych sztucznych dla każdej wybranej zmiennej.</p>
+
+  <p><span class="runinhead">Trzony nazw.</span> Podaj nazwy, które będą służyły jako przedrostek wszystkich sztucznych zmiennych dla każdej wybranej zmiennej. Podaj tyle nazw, ile jest wybranych zmiennych, oddzielając nazwy spacjami. Nazwy sztucznych zmiennych będą miały postać: trzonnazwy_n. Jeśli istnieje zmienna o tej nazwie, zostanie ona zastąpiona.</p>
+
+  <p><span class="runinhead">Nazwa makra.</span> W przypadku wprowadzenia nazw w tym polu dla każdego zestawu zmiennych sztucznych lub zmiennej ilościowej utworzone zostanie makro. Jeśli wymagane jest utworzenie makra, podaj tyle nazw, ile jest wybranych zmiennych. Zwykle nazwy makr rozpoczynają się od znaku "!".</p>
+
+  <p><span class="runinhead">Interakcje drugiego rzędu i interakcje trzeciego rzędu.</span> Postępuj tak samo, jak w przypadku sztucznych zmiennych efektu głównego, ale podaj tylko jeden trzon nazwy i jedną nazwę makra (jeśli jest wymagane). Nazwy sztucznych zmiennych będą miały postać<br>
+  trzonnazwy_m_n,<br>
+  a ewentualne istniejące zmienne będą zastępowane.</p>
+
+  <p><span class="runinhead">Etykiety sztucznych zmiennych.</span> Domyślnie, etykiety sztucznych zmiennych tworzy się na podstawie nazwy zmiennej wejściowej oraz odpowiedniej etykiety wartości. Wybierz opcję <span class=".screen"> Użyj wartości</span>, aby zamiennie stosować wartości. Jeśli jakaś wartość nie ma etykiety, w etykiecie zostanie użyta sama wartość.</p>
+
+  <p><span class="runinhead">Porządek wartości.</span> Wybierz opcję <span class=".screen">Rosnąco</span> lub <span class=".screen">Malejąco</span> dla porządku sztucznych zmiennych. Opcja ta jest przydatna głównie w połączeniu z tworzeniem makro.</p>
+
+  <p><span class="runinhead">Pomijaj pierwszą kategorię sztucznych zmiennych w definicjach makr.</span> Zaznacz to pole, aby pominąć pierwszą sztucznych zmienną w definiowaniu makr. Jest to użyteczne w przypadku procedury REGRESSION, ponieważ umożliwia uniknięcie sytuacji, w której macierz regresora będzie osobliwa. Jeśli nie zostaną wygenerowane składniki interakcji, oznacza to, że pierwsza sztuczna zmienna każdej zmiennej została pominięta w definicji makra. Jeśli istnieją składniki interakcji, wszystkie zmienne tej kategorii są pomijane w definicji makra.</p>
+
+  <p class="bullet">• To, które kategorie uznawane są za pierwsze, zależy od ustawienia Porządek wartości.</p>
+
+  <p class="bullet">• To ustawienie nie wpływa na zmienne ilościowe.</p>
+
+  <p><span class="runinhead">Wykorzystanie poziomu pomiaru.</span>
+  W przypadku zmiennych jakościowych dla każdej odmiennej wartości tworzona jest sztuczna zmienna.
+  Zmienne ilościowe są odzwierciedlane przez pojedyncze zmienne. Aby stosować ten sposób działania, zaznacz opcję <span class=".screen">Nie twórz sztucznych zmiennych dla wartości zmiennych ilościowych</span>. W przypadku zaznaczenia opcji <span class=
+  ".screen">Utwórz sztuczne zmienne dla wszystkich zmiennych</span>, poziom pomiaru będzie ignorowany i zmienne będą generowane dla każdej wartości, nawet dla zmiennych ilościowych.</p>
+
+  <h2>Funkcje dodatkowe</h2>
+
+  <p>To okno dialogowe generuje komendę rozszerzającą SPSSINC CREATE DUMMIES. Aby wyświetlić pomoc dotyczącą tej komendy, uruchom następującą komendę:</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP.</p>
+
+  <h2>Wymagania</h2>
+
+  <p>To okno dialogowe wymaga zainstalowania wtyczki integracji dla języka Python oraz komendy rozszerzającej SPSSINC CREATE DUMMIES. Dla wersji programu IBM® SPSS® Statistics 19 i wyższej, wtyczka i komenda rozszerzająca są instalowane z pakietem Essentials for Python. W celu uzyskania dalszych informacji, zobacz temat W jaki sposób uzyskać wtyczki integracyjne, wybierając opcję System podstawowy &gt; Często zadawane pytania w systemie pomocy IBM SPSS Statistics. Jeśli komenda rozszerzająca SPSSINC CREATE DUMMIES została pobrana z serwisu SPSS Community, należy postępować zgodnie z instrukcjami w odpowiednim pliku readme.</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>

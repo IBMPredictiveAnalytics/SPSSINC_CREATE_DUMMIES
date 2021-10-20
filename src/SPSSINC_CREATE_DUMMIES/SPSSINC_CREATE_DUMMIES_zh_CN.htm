@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>根据一个变量的多个值创建一组虚变量</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>根据一个变量的多个值创建一组虚变量</h1>此过程接受一个变量列表，并生成一组代表这些变量的值的虚变量。此过程可以为各个变量生成虚变量、为双向交互项生成虚变量以及/或者为三向交互生成虚变量。此过程在忽略当前过滤器所排除的所有个案的情况下传递数据，并为找到的值创建虚变量。
+  <p>缺省情况下，对于标度变量，此过程仅生成一个变量，而不是生成可用于生成交互项的虚变量。</p>
+
+  <p><span class="runinhead">针对下列变量创建虚变量</span>。请选择变量，以便根据这些变量创建多组虚变量。通常，这些变量是分类变量，但选择标度变量对于构建交互项而言非常有用。可以同时使用字符串变量和数字变量，但不允许同时使用日期变量和时间变量。</p>
+
+  <p><span class="runinhead">主效应虚变量</span>。选中<span name=".screen">创建主效应虚变量</span>框将为每个选定变量创建一组虚变量。</p>
+
+  <p><span class="runinhead">根名称</span>。请指定一些名称，这些名称将用作每个选定变量的所有虚变量的前缀。输入的名称数目与选定变量数必须相同，并且各个名称之间以空格分隔。虚变量名的格式为 rootname_n。如果已存在具有此名称的变量，那么将替换该变量。</p>
+
+  <p><span class="runinhead">宏名称</span>。如果在此字段中输入了名称，那么将为每组虚变量或标度变量创建一个宏。如果需要生成宏，请输入数目与选定变量相同的名称。惯例做法是，使每个宏名称以“!”开头。</p>
+
+  <p><span class="runinhead">双向交互和三向交互</span>。执行与“主效应虚变量”相同的过程，但仅输入单个根名称和宏名称（如果需要）。虚变量名称的格式为 <br>rootname_m_n<br>，并且将替换现有变量。</p>
+
+  <p><span class="runinhead">虚变量标签</span>。缺省情况下，将根据输入变量名以及相应的值标签来构造虚变量的标签。选择<span class=".screen">使用值</span>可以改为使用值。如果未对某个值进行标注，那么将在标签中使用该值本身。</p>
+
+  <p><span class="runinhead">值顺序</span>。请选择<span class=".screen">升序</span>或<span class= ".screen">降序</span>作为虚变量的排序顺序。这主要用于与生成宏相关的用途。</p>
+
+  <p><span class="runinhead">在宏定义中省略第一个虚变量类别</span>。选中此复选框表示在每个宏定义中省略第一个虚变量。这是 REGRESSION 过程的惯例，旨在避免生成奇异回归变量矩阵。如果未生成交互项，那么这表示在宏定义中省略每个变量的第一个虚变量。如果存在交互项，那么在宏定义中，将省略对于任何输入变量涉及该类别的变量。</p>
+
+  <p class="bullet">• 哪些类别被视为第一类别取决于“值顺序”设置。</p>
+
+  <p class="bullet">• 标度变量不受此设置影响。</p>
+
+  <p><span class="runinhead">测量级别用法</span>。分类变量将为每个相异值生成一个虚变量。标度变量由单个变量表示。要实现此行为，请选择<span class=".screen">对于标度变量值不创建虚变量</span>。选择<span class= ".screen">为所有变量创建虚变量</span>表示忽略测量级别并为每个值生成一个变量，即使对于标度变量也是如此。</p>
+
+  <h2>其他功能部件</h2>
+
+  <p>此对话框将生成 SPSSINC CREATE DUMMIES 扩展命令的语法。要显示此命令的帮助，请运行以下语法：</p>
+
+  <p class="codeblock">SPSSINC CREATE DUMMIES /HELP。</p>
+
+  <h2>要求</h2>
+
+  <p>此对话框需要 Integration Plug-In for Python 和 SPSSINC CREATE DUMMIES
+扩展命令。对于 IBM® SPSS® Statistics 19 及更高版本而言，此 Plug-In 和扩展命令随
+Essentials for Python 程序包一起安装。有关更多信息，请参阅“IBM SPSS Statistics
+帮助”系统的“核心系统”&gt;“常见问题”中的“如何获取集成插件”。如果您是从
+SPSS Community 下载 SPSSINC CREATE DUMMIES，请按相关自述文件中的指示信息执行操作。</p><br>
+  <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2013</p>
+</body>
+</html>
