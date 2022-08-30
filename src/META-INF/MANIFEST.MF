@@ -1,5 +1,5 @@
 Name: SPSSINC CREATE DUMMIES
-Dialog-Specs: SPSSINC_CREATE_DUMMIES.spd
+Dialog-Specs: SPSSINC_CREATE_DUMMIES.cfe
 Command-Specs: SPSSINC_CREATE_DUMMIES.xml
 Code-Files: SPSSINC_CREATE_DUMMIES.py
 Misc-Files: extsyntax.css,IBMdialogicon.png,markdown.html
@@ -7,12 +7,12 @@ Summary: Create a set of dummy variables representing the values of on
  e or more variables and interaction terms
 Description: This procedure creates a set of 0-1 dummy variables repre
  senting the distinct values of one or more variables. It can also cre
- ate dummies for two- and three-way interaction terms.  It is useful, 
+ ate dummies for two- and three-way interaction terms.  It is useful,
  for example, in converting categorical variables into a set of variab
  les appropriate for use in the Regression procedure. It can optionall
  y create  macro variables representing sets of dummies.
 Author: JKP, IBM SPSS
-Version: 3.0.0
+Version: 3.0.1
 Product-Version: 24
 Date: 1/2/2014
 Product-Version-Maximum: 99
