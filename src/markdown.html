@@ -10,9 +10,6 @@
 <link rel="stylesheet" type="text/css" href="extsyntax.css" />
 
 
-
-
-
 </head>
 
 <body>
@@ -20,14 +17,25 @@
 
 <p>Create a set of dummy variables for values of one or more variables</p>
 <div class="syntax">
-<p>SPSSINC CREATE DUMMIES  VARIABLES=<em>variables</em> ROOTNAME1=<em>rootnames</em>
-ROOTNAME2=<em>rootname</em> ROOTNAME3=<em>rootname</em></p>
+<p>SPSSINC CREATE DUMMIES<br/>
+VARIABLES = <em>variables</em><sup>&#42;</sup><br/>
+ROOTNAME1 = <em>rootnames</em><br/>
+ROOTNAME2 = <em>rootname</em><br/>
+ROOTNAME3 = <em>rootname</em></p>
 
-<p>/OPTIONS MAXVARS=<em>n</em> ORDER=A<sup>&#42;&#42;</sup> or D<br/>
-MACRONAME1=&ldquo;<em>name</em>&rdquo; MACRONAME2=&ldquo;<em>name</em>&rdquo; MACRONAME3=&ldquo;<em>name</em>&rdquo;<br/>
-OMITFIRST=YES<sup>&#42;&#42;</sup> or NO<br/>
-USEVALUELABELS=NO<sup>&#42;&#42;</sup> or YES<br/>
-USEMLS=YES<sup>&#42;&#42;</sup> or NO</p>
+<p>/OPTIONS</p>
+MAXVARS = <em>n</em><br/>
+ORDER = A<sup>&#42;&#42;</sup> or D<br/>
+MACRONAME1 = &ldquo;<em>name</em>&rdquo;<br/>
+MACRONAME2 = &ldquo;<em>name</em>&rdquo;<br/>
+MACRONAME3 = &ldquo;<em>name</em>&rdquo;<br/>
+OMITFIRST = YES<sup>&#42;&#42;</sup> or NO<br/>
+USEVALUELABELS = NO<sup>&#42;&#42;</sup> or YES<br/>
+USEMLS = YES<sup>&#42;&#42;</sup> or NO<br>
+MISSINGSCOPE = VARIABLE<sup>&#42;&#42;</sup> or LISTWISE</br>
+USERMISSING = NO<sup>&#42;&#42;</sup> or YES
+
+</p>
 
 <p>/HELP</p>
 
@@ -70,13 +78,13 @@ would generate
 
 <h2>OPTIONS</h2>
 
-<p>Specify <strong>USEMLS</strong>=NO to force all variables to be treated categorically.</p>
+<p>Specify <strong>USEMLS</strong> = NO to force all variables to be treated as categorical.</p>
 
-<p>Specify <strong>MAXVARS</strong>=n to limit the number of dummy variables generated to 
+<p>Specify <strong>MAXVARS</strong> = n to limit the number of dummy variables generated to 
 no more than n.  This applies only to the one-way interactions.</p>
 
 <p>By default the dummies correspond to ascending values of the 
-input variable.  Specify <strong>ORDER</strong>=D for the reverse order.  For interaction dummies, the
+input variable.  Specify <strong>ORDER</strong> = D for the reverse order.  For interaction dummies, the
 values are sorted in the order in which the variables are listed in the VARIABLES
 keyword.</p>
 
@@ -84,11 +92,11 @@ keyword.</p>
 <code>varname = value or (varname = value) * (varname = value)</code> or 
 <code>varname * (varname = value)</code>.</p>
 
-<p><strong>USEVALUELABELS</strong>=YES causes the value label corresponding to the dummy 
+<p><strong>USEVALUELABELS</strong> = YES causes the value label corresponding to the dummy 
 to be used in the label.  If a value does not have a label, the value itself is used.
-USEVALUELABELS=NO causes the values to be used instead.</p>
+USEVALUELABELS = NO causes the values to be used instead.</p>
 
-<p><strong>MACRONAME1</strong>=name creates a set of macros whose text is the list of dummy variables.
+<p><strong>MACRONAME1</strong> = name creates a set of macros whose text is the list of dummy variables.
 The number of names must match the number of variables.
 <strong>MACRONAME2</strong> and <strong>MACRONAME3</strong> specify a single name each for the 
 two- and three-way macros.  Note that the macro names must be enclosed in
@@ -103,7 +111,16 @@ in the macro text.</p>
 <p><strong>ROOTNAME</strong> is a synonym for ROOTNAME1; <strong>MACRONAME</strong> is a synonym
 for MACRONAME1, and <strong>VARIABLE</strong> is a synonym for VARIABLES.</p>
 
-<p>&copy; Copyright IBM Corp. 1989, 2014</p>
+<p><strong>MISSINGSCOPE</strong> determines whether missing values are treated listwise or by variable.
+If <strong>LISTWISE</strong>, a missing value for any selected variable causes the entire case to be
+ignored in collecting the variable values for dummy variable creation.
+If <strong>VARIABLE</strong>, each variable is considered separately, so a missing value on
+another variable has no effect on the values for dummy creation 
+
+<p><strong>USERMISS</strong> specifies whether to create dummies for user missing values
+as well as regular values.  Dummies are never created for system missing values.</p>
+
+<p>&copy; Copyright IBM Corp. 1989, 2022</p>
 
 </body>
 

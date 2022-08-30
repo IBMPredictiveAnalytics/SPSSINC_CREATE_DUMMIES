@@ -3,7 +3,7 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2020
+# * (C) Copyright IBM Corp. 1989, 2022
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
@@ -14,13 +14,14 @@
 """SPSSINC CREATE DUMMIES extension command"""
 
 __author__ =  'spss, JKP'
-__version__=  '2.0.3'
+__version__=  '2.1.0'
 
 # history
 # 18-dec-2009 enable translation
 #  23-jun-2010  translatable proc names
 #  31-oct-2011 upgrade to support two and three way interaction term generation
 # 15-may-2013 fix case where label is null and generation from labels is requested
+# 23-aug-2022 add control over missing value treatment
 
 helptext = """SPSSINC CREATE DUMMIES  VARIABLES=varnames ROOTNAME1=rootnames
 ROOTNAME2=rootname ROOTNAME3=rootname
@@ -100,7 +101,15 @@ import spss, spssaux
 from extension import Template, Syntax, processcmd
 import sys, locale
 
-
+# debugging
+# makes debug apply only to the current thread
+#try:
+    #import wingdbstub
+    #import threading
+    #wingdbstub.Ensure()
+    #wingdbstub.debugger.SetDebugThreads({threading.get_ident(): 1})
+#except:
+    #pass
 
 class DataStep(object):
     def __enter__(self):
@@ -119,7 +128,7 @@ class DataStep(object):
 
 def CreateBasisVariables(varname=None, varnames=None, root=None, root1=None, root2=None, root3=None,
     maxvars=None, usevaluelabels=True, macroname=None, macroname1=None, macroname2=None, macroname3=None,
-        omitfirst=True, usemls=True, order="a", labelseparator=": "):
+        omitfirst=True, usemls=True, order="a", labelseparator=": ", missingscope="variable", includeuser=False):
     """Create a set of dummy variables that span the values of varname within any current filter.
     
     varname is a list of variable names.
@@ -143,22 +152,8 @@ def CreateBasisVariables(varname=None, varnames=None, root=None, root1=None, roo
       choose a different separator, e.g., labelseparator=": ".
     """
     
-        # debugging
-    # makes debug apply only to the current thread
-    #try:
-        #import wingdbstub
-        #if wingdbstub.debugger != None:
-            #import time
-            #wingdbstub.debugger.StopDebug()
-            #time.sleep(2)
-            #wingdbstub.debugger.StartDebug()
-        #import thread
-        #wingdbstub.debugger.SetDebugThreads({thread.get_ident(): 1}, default_policy=0)
-        ## for V19 use
-        ##    ###SpssClient._heartBeat(False)
-    #except:
-        #pass
-    
+
+        
     # legacy name mapping
     if (varname and varnames)\
        or (root and root1)\
@@ -189,10 +184,8 @@ or MACRONAME and MACRONAME1 together"""))
         else:
             rootlist.append([])
     global  unistr
-    if spss.PyInvokeSpss.IsUTF8mode():
-        unistr = str
-    else:
-        unistr = str
+
+    unistr = str
         
     # When generating macros, for one-way dummies, there must be a macro name
     # for each variable.  For interaction dummies, there is one macro name for all dummies of that order
@@ -206,9 +199,11 @@ or MACRONAME and MACRONAME1 together"""))
         raise ValueError(_("""A macro name was specified without a corresponding root name"""))
     
     maker = Maker(varnames, rootlist, macronames, maxvars, usevaluelabels, omitfirst, order,
-        labelseparator, usemls)
+        labelseparator, usemls, missingscope, includeuser)
     
     syntax = maker.buildsyntax()
+    if not syntax:
+        raise ValueError(_("No variables could be created as too few values qualified."))
     spss.Submit(syntax)
     maker.report()
     maker.macros()
@@ -218,7 +213,7 @@ or MACRONAME and MACRONAME1 together"""))
 class Vp(object):
     """structure for variable properties"""
     
-    def __init__(self, vtype, vlabels, generate):
+    def __init__(self, vtype, vlabels, generate, index, missingValues):
         """vtype is >0 for strings
         vlabels is a value label dictionary or None
         generate indicates whether to generate a var = value expression
@@ -230,7 +225,7 @@ class Maker(object):
     """Create dummy variables for levels of selected variables"""
     
     def __init__(self, varnames, rootlist, macronames, maxvars, usevaluelabels, omitfirst, order,
-        labelseparator, usemls):
+        labelseparator, usemls, missingscope, includeuser):
         attributesFromDict(locals())
 
         self.index = []  # variable indexes
@@ -256,7 +251,7 @@ class Maker(object):
         # track target variables involving no categorical expressions
         # these are exempt from pruning in macro generation
         self.onlyscale = set() 
-        self.myenc = locale.getlocale()[1]  # get current encoding in case conversions needed
+        ###self.myenc = locale.getlocale()[1]  # obsolete
         with DataStep():
             ds = spss.Dataset(name="*")
             ###ds = spss.Dataset()
@@ -274,7 +269,7 @@ class Maker(object):
                 generate = not (usemls and v.measurementLevel in ["SCALE", "UNKNOWN"])
                 if not generate:
                     vlabels = {False: varnames[i]}  # label just uses variable name
-                self.varprops[i] = Vp(v.type, vlabels, generate)
+                self.varprops[i] = Vp(v.type, vlabels, generate, v.index, v.missingValues)
                 self.index.append(v.index)  # maps varname location to position in case vector
 
             # data is a set whose members are tuples of the form ((index list), (value list))
@@ -282,11 +277,27 @@ class Maker(object):
             # for scale variables if honoring measurement level, all values are collapsed into one
             # sysmis values (None) are discarded
             
+            # missing treatment can be variable, listwise, or include
+            # if include, all values are processed except that sysmis is always excluded
+            # if listwise, any missing for a variable causes the case to be discarded
+            # if variable, any missing is discarded but processing continues
+            
             for case in ds.cases:
+                vals = [self.getval(i, case) for i in range(self.numvar)]
+                missings = [ismissing(vals[i], self.varprops[i].missingValues) for i in range(self.numvar)]
+                sysmiss = [val is None for val in vals]
+                usermiss = set(missings) - set(sysmiss)
+                if missingscope == "listwise": 
+                    if any(sysmiss) or (usermiss and not includeuser):
+                        continue       
+                # variable-wise processing
                 for i in range(self.numvar):
-                    val = self.getval(i, case)
-                    if val is None:
+                    if sysmiss[i]:
                         continue
+                    # include allows non-sysmis missings
+                    if missings[i] and not includeuser:
+                        continue
+                    val = vals[i]                    
                     self.extreme[i] = self.minmax(self.extreme[i], val)  # record extrema for macro generation
                     if self.oneway:
                         self.data.add(((i,), (val,)))
@@ -381,7 +392,7 @@ class Maker(object):
             if self.extreme[v] == valuelist[i] and self.varprops[v].generate:
                 self.exclude.add(targetname)
         if order == 1:
-            compute = """COMPUTE %s = %s.""" % (targetname, self.frag(vnindexes[0], valuelist[0]))
+            compute = """COMPUTE %s = (%s).""" % (targetname, self.frag(vnindexes[0], valuelist[0]))
         else:
             part1 = self.frag(vnindexes[0], valuelist[0])
             part2 = self.frag(vnindexes[1], valuelist[1])
@@ -404,9 +415,15 @@ class Maker(object):
         else:            
             quot =  ""
         if self.varprops[vnindex].generate:
-            cexp = """%s EQ %s%s%s""" % (self.varnames[vnindex], quot, _safeval(value, quot), quot)
+            if quot:
+                cexp = """%s EQ %s%s%s""" % (self.varnames[vnindex], quot, _safeval(value, quot), quot)
+            else:
+                cexp = """value(%s) EQ %s%s%s""" % (self.varnames[vnindex], quot, _safeval(value, quot), quot)
         else:
-            cexp = self.varnames[vnindex]
+            if quot:
+                cexp = f"""{self.varnames[vnindex]}"""
+            else:
+                cexp = f"""value({self.varnames[vnindex]})"""
         return cexp
     
     def maketargetname(self, order, index):
@@ -484,18 +501,27 @@ class Maker(object):
             for i, name in enumerate(self.macronames[0]):
                 #body = " ".join(self.target[1][i][first:])
                 body = self.makenamelist(self.target[1][i])
-                spss.SetMacroValue(name, body)
-                info.addrow(name, [body])
+                if body:
+                    spss.SetMacroValue(name, body)
+                    info.addrow(name, [body])
+                else:
+                    info.addrow(name, [_("- Not Produced")])
         if self.macronames[1]:
             #body = " ".join(self.target[2][first:])
             body = self.makenamelist(self.target[2])
-            spss.SetMacroValue(self.macronames[1], body)
-            info.addrow(self.macronames[1], [body])
+            if body:
+                spss.SetMacroValue(self.macronames[1], body)
+                info.addrow(self.macronames[1], [body])
+            else:
+                info.addrow(self.macronames[1], [_("- Not Produced")])
         if self.macronames[2]:
             #body = " ".join(self.target[3][first:])
             body = self.makenamelist(self.target[3])
-            spss.SetMacroValue(self.macronames[2], body)
-            info.addrow(self.macronames[2], [body])
+            if body:
+                spss.SetMacroValue(self.macronames[2], body)
+                info.addrow(self.macronames[2], [body])
+            else:
+                info.addrow(self.macronames[2], [_("- Not Produced")])
         try:
             info.generate()
         except:
@@ -526,7 +552,29 @@ def _safeval(val, quot):
     else:
         return val
 
+def ismissing(value, missingtuple): 
+    """Return True or False according to whether value is either user or system missing according to the 3 or 4-tuple missingtuple.
+    
+    missingtuple corresponds to what is returned by GetVarMissingValues or the spssaux Variable class MissingValues2 property"""
+    
+    #string variables return only a 3-tuple, so must check from the end.  Strings do not support range mv's
+    #string values arrive with trailing blanks, but missing values do not.
 
+
+    stringmv = isinstance(value, str)
+    # with long strings, only the first 8 bytes are compared to the defined missing values
+    # truncating a multibyte/utf-8 string could result in a partial character at the end
+    # but then the first 8 bytes could not be a missing value anyway.
+
+    if stringmv:
+        value = value[:8]
+    if value is None or value in missingtuple[-3:]:
+        return True
+    if missingtuple[0] == 0 or stringmv:
+        return False
+    if missingtuple[0] < 0:     # range mv definition
+        return missingtuple[1] <= value <= missingtuple[2]
+    return False
 
 def Run(args):
     """Execute the CREATE DUMMIES extension command"""
@@ -540,6 +588,7 @@ def Run(args):
         Template("ROOTNAME1", subc="", ktype="varname", var="root1", islist=True),
         Template("ROOTNAME2", subc="", ktype="varname", var="root2"),
         Template("ROOTNAME3", subc="", ktype="varname", var="root3"),
+        
         Template("MAXVARS", subc="OPTIONS", ktype="int", var="maxvars"),
         Template("ORDER", subc="OPTIONS", ktype="str", var="order", vallist=['a', 'd']),
         Template("MACRONAME", subc="OPTIONS", ktype="literal", var="macroname", islist=True),
@@ -549,6 +598,8 @@ def Run(args):
         Template("OMITFIRST", subc="OPTIONS", ktype="bool", var="omitfirst"),
         Template("USEML", subc="OPTIONS", ktype="bool", var="usemls"),
         Template("USEVALUELABELS", subc="OPTIONS", ktype="bool", var="usevaluelabels"),
+        Template("MISSINGSCOPE", subc="OPTIONS", ktype="str", var="missingscope", vallist=["variable", "listwise"]),
+        Template("USERMISS", subc="OPTIONS", ktype="bool", var="includeuser"),
         Template("HELP", subc="", ktype="bool")])
     
     #enable localization
